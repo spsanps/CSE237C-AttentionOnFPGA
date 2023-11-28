@@ -11,7 +11,7 @@
 // Define the value of N
 // Number of tokens (each token is a vector)
 #define N 16
-#define LOG2N 4
+#define LOG2N 4 // Should be log2(DMODEL) ?
 
 // Define the value of DMODEL
 // length of a single token vector
