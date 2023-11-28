@@ -1,21 +1,31 @@
 #include <ap_int.h>
+#include "attention.h"
+#include "QKVProj.cpp"
+#include "QKV.cpp"
 
-#define SEQ_LENGTH 128
-#define BITWIDTH 4
+// taken tokens (N x DMODEL), 3 weights (DMODEL x DMODEL) and return (N x DMODEL) output
 
-typedef ap_int<BITWIDTH> data_t;
+void attention(data_t tokens[N][DMODEL],
+               data_t weightsQ[DMODEL][DMODEL],
+               data_t weightsK[DMODEL][DMODEL],
+               data_t weightsV[DMODEL][DMODEL],
+               data_t output[N][DMODEL])
+{
+    data_t K[N][DMODEL];
+    // compute K
+    project_all(tokens, weightsK, K);
 
-void attention(data_t input_tokens[SEQ_LENGTH],
-               data_t output_tokens[SEQ_LENGTH]) {
-#pragma HLS INTERFACE s_axilite port=return
-#pragma HLS INTERFACE m_axi depth=65536 port=input_tokens offset=slave
-#pragma HLS INTERFACE m_axi depth=65536 port=output_tokens offset=slave
+    for (int i = 0; i < N; i++)
+    {
+        // compute Q
+        data_t Q[DMODEL];
+        project(tokens[i], weightsQ, Q);
 
-    // Your attention mechanism logic here
+        // compute max_index
+        int max_index = 0;
+        singleQK(Q, K, max_index);
 
-    // Example: Pass input tokens to output directly (replace with actual attention logic)
-    for (int i = 0; i < SEQ_LENGTH; i++) {
-#pragma HLS PIPELINE
-        output_tokens[i] = input_tokens[i];
+        // compute V
+        project(tokens[max_index], weightsV, output[i]);
     }
 }

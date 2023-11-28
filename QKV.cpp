@@ -1,35 +1,25 @@
 #include "attention.h"
+#include "dotProd.cpp"
 
-// function to take in Q: 1 x DMODEL input, K (N x DMODEL) and V (N x DMODEL) and return 1 x DMODEL output
-
-void singleQKV(data_t Q[DMODEL], data_t K[N]][DMODEL], data_t V[N][DMODEL], data_t output[DMODEL])
+// function to take in Q: 1 x DMODEL input, K (N x DMODEL) and and return max_index
+void singleQK(data_t Q[DMODEL], data_t K[N][DMODEL], int &max_index)
 {
-    // keep track of max index
-    int max_index = 0;
-    // keep track of max value
-    data2_t max_value = 0;
-    // code to do QK and max index
-    // we don't need intermediate QK matrix, so we can just do it in one loop
+    // placeholder code
+    // do 4 bit and in one cycle
+    data3_t result = 0;
+    data3_t max_result = 0;
     for (int i = 0; i < N; i++)
     {
-        // calculate QK
-        data2_t QK = 0;
-        for (int j = 0; j < DMODEL; j++)
+        // Keep only the BITWIDTH len most significant bits
+        // result = 0; // Initialize result for each dot product calculation
+        // initialized in dotProd.cpp
+        dotProd(Q, K[i], result);
+
+        if (result > max_result)
         {
-            QK += Q[j] * K[i][j];
-        }
-        // check if QK is greater than max value
-        if (QK > max_value)
-        {
-            max_value = QK;
+            max_result = result;
             max_index = i;
         }
     }
-
-    // softmax is just approximated with max
-    // place the max index of V into output
-    for (int i = 0; i < DMODEL; i++)
-    {
-        output[i] = V[max_index][i];
-    }
 }
+

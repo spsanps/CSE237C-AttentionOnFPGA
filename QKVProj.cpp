@@ -1,28 +1,30 @@
 #include <ap_int.h>
+#include "attention.h"
+#include "dotProd.cpp"
 
-#define MATRIX_SIZE 128
-#define NUM_CHANNELS 3
-#define BITWIDTH 4
+// take token (1 x DMODEL), weight (DMODEL x DMODEL) and return (1 x DMODEL)output
+void project(data_t token[DMODEL],
+             data_t weight[DMODEL][DMODEL],
+             data_t output[DMODEL])
+{
+    // placeholder code
+    // do 4 bit and in one cycle
+    data3_t result = 0;
+    for (int i = 0; i < DMODEL; i++)
+    {
+        // Keep only the BITWIDTH len most significant bits
+        dotProd(token, weight[i], result);
 
-typedef ap_int<BITWIDTH> data_t;
+        output[i] = result >> (BITWIDTH3 - BITWIDTH); // Corrected syntax
+    }
+}
 
-void process_data(data_t input_matrix[MATRIX_SIZE][MATRIX_SIZE],
-                  data_t input_channels[MATRIX_SIZE][NUM_CHANNELS],
-                  data_t output_matrices[NUM_CHANNELS][MATRIX_SIZE][MATRIX_SIZE]) {
-#pragma HLS INTERFACE s_axilite port=return
-#pragma HLS INTERFACE m_axi depth=65536 port=input_matrix offset=slave
-#pragma HLS INTERFACE m_axi depth=65536 port=input_channels offset=slave
-#pragma HLS INTERFACE m_axi depth=65536 port=output_matrices offset=slave
-
-    // Your code to process the input data and generate the output data here
-
-    // Example: Copy input_matrix to each output matrix
-    for (int c = 0; c < NUM_CHANNELS; c++) {
-        for (int i = 0; i < MATRIX_SIZE; i++) {
-            for (int j = 0; j < MATRIX_SIZE; j++) {
-#pragma HLS PIPELINE
-                output_matrices[c][i][j] = input_matrix[i][j];
-            }
-        }
+void project_all(data_t tokens[SEQ_LENGTH][DMODEL],
+                 data_t weights[DMODEL][DMODEL],
+                 data_t outputs[SEQ_LENGTH][DMODEL])
+{
+    for (int i = 0; i < SEQ_LENGTH; i++)
+    {
+        project(tokens[i], weights, outputs[i]);
     }
 }

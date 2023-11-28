@@ -5,12 +5,13 @@
 #include <ap_int.h>
 
 // Define the bit width
-// Width of each value in the token vector
+// Bit Width of each value in the token vector
 #define BITWIDTH 4
 
 // Define the value of N
 // Number of tokens (each token is a vector)
 #define N 16
+#define LOG2N 4
 
 // Define the value of DMODEL
 // length of a single token vector
@@ -31,7 +32,12 @@
 // define 4 bit data type unsigned
 typedef ap_uint<BITWIDTH> data_t;
 
-// intermediate data type
-typedef ap_uint<BITWIDTH * 2> data2_t;
+// intermediate data types
+#define BITWIDTH2 (BITWIDTH * 2)
+#define BITWIDTH3 (BITWIDTH * 2 + LOG2N)
+// multiplications of 4 bit values can be 8 bits
+typedef ap_uint<BITWIDTH2> data2_t;
+// additions of 8 bit values can overflow 8 bits
+typedef ap_uint<BITWIDTH3> data3_t;
 
 #endif // ATTENTION_H
