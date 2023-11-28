@@ -32,6 +32,6 @@
 typedef ap_uint<BITWIDTH> data_t;
 
 // intermediate data type
-typedef ap_uint<BITWIDTH*2> data2_t;
+typedef ap_uint<BITWIDTH * 2> data2_t;
 
 #endif // ATTENTION_H
