@@ -12,6 +12,9 @@
 // Number of tokens (each token is a vector)
 #define N 16
 #define LOG2N 4 // Should be log2(DMODEL) ?
+// used in dot product
+// dot product used for weight DMODEL x DMODEL
+// dot product used for Q, K which is also DMODEL x DMODEL
 
 // Define the value of DMODEL
 // length of a single token vector
