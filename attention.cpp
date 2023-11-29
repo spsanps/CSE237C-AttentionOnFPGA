@@ -1,7 +1,7 @@
 #include <ap_int.h>
 #include "attention.h"
-#include "QKVProj.cpp"
-#include "QKV.cpp"
+#include "QKVProj.h"
+#include "QKV.h"
 
 // taken tokens (N x DMODEL), 3 weights (DMODEL x DMODEL) and return (N x DMODEL) output
 

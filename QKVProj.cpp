@@ -1,6 +1,6 @@
 #include <ap_int.h>
 #include "attention.h"
-#include "dotProd.cpp"
+#include "dotProd.h"
 
 // take token (1 x DMODEL), weight (DMODEL x DMODEL) and return (1 x DMODEL)output
 void project(data_t token[DMODEL],

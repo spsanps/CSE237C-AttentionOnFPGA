@@ -1,5 +1,5 @@
 #include "attention.h"
-#include "dotProd.cpp"
+#include "dotProd.h"
 
 // function to take in Q: 1 x DMODEL input, K (N x DMODEL) and and return max_index
 void singleQK(data_t Q[DMODEL], data_t K[N][DMODEL], int &max_index)
