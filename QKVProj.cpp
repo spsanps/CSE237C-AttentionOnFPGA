@@ -7,8 +7,7 @@ void project(data_t token[DMODEL],
              data_t weight[DMODEL][DMODEL],
              data_t output[DMODEL])
 {
-    // placeholder code
-    // do 4 bit and in one cycle
+
     data3_t result = 0;
     for (int i = 0; i < DMODEL; i++)
     {
