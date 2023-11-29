@@ -2,7 +2,12 @@
 #ifndef WEIGHTS_H
 #define WEIGHTS_H
 
+#ifndef ATTENTION_H
+#define ATTENTION_H
+
 #include "attention.h"
+
+#endif // ATTENTION_H
 
 // check if DMODEL is 64
 #if DMODEL != 64
