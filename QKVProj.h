@@ -9,8 +9,8 @@ void project(data_t token[DMODEL],
              data_t weight[DMODEL][DMODEL],
              data_t output[DMODEL]);
 
-void project_all(data_t tokens[SEQ_LENGTH][DMODEL],
+void project_all(data_t tokens[N][DMODEL],
                  data_t weights[DMODEL][DMODEL],
-                 data_t outputs[SEQ_LENGTH][DMODEL]);
+                 data_t outputs[N][DMODEL]);
 
 #endif // QKVPROJ_H
