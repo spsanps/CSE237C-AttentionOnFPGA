@@ -1,13 +1,14 @@
-#include <ap_int.h>
 #include "attention.h"
 
-// placeholder code
-// do 4 bit and in one cycle
 void dotProd(data_t row1[DMODEL], data_t row2[DMODEL], data3_t &result)
 {   
     result = 0;
+#pragma HLS DATAFLOW
     for (int i = 0; i < DMODEL; i++)
     {
+#pragma HLS UNROLL
+#pragma HLS ARRAY_PARTITION variable=row1 type=complete
+#pragma HLS ARAY_PARTITION variable=row2 type=complete
         result += row1[i] * row2[i];
     }
 }
