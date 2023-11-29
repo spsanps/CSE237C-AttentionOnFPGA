@@ -3,6 +3,16 @@
 #include "QKVProj.h"
 #include "QKV.h"
 
+#if DMODEL == 16
+#include "weights16.h"
+#elif DMODEL == 32
+#include "weights32.h"
+#elif DMODEL == 64
+#include "weights64.h"
+#else
+#error "Unsupported DMODEL value"
+#endif
+
 // taken tokens (N x DMODEL), 3 weights (DMODEL x DMODEL) and return (N x DMODEL) output
 
 void attention(data_t tokens[N][DMODEL],

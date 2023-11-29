@@ -18,11 +18,11 @@ void project(data_t token[DMODEL],
     }
 }
 
-void project_all(data_t tokens[SEQ_LENGTH][DMODEL],
+void project_all(data_t tokens[N][DMODEL],
                  data_t weights[DMODEL][DMODEL],
-                 data_t outputs[SEQ_LENGTH][DMODEL])
+                 data_t outputs[N][DMODEL])
 {
-    for (int i = 0; i < SEQ_LENGTH; i++)
+    for (int i = 0; i < N; i++)
     {
         #pragma HLS unroll off=true
         project(tokens[i], weights, outputs[i]);
