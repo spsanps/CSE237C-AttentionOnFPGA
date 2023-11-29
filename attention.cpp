@@ -17,6 +17,7 @@ void attention(data_t tokens[N][DMODEL],
 
     for (int i = 0; i < N; i++)
     {
+        #pragma HLS unroll off=true
         // compute Q
         data_t Q[DMODEL];
         project(tokens[i], weightsQ, Q);

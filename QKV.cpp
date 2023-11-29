@@ -10,6 +10,7 @@ void singleQK(data_t Q[DMODEL], data_t K[N][DMODEL], int &max_index)
     data3_t max_result = 0;
     for (int i = 0; i < N; i++)
     {
+        #pragma HLS unroll off=true
         // Keep only the BITWIDTH len most significant bits
         // result = 0; // Initialize result for each dot product calculation
         // initialized in dotProd.cpp
