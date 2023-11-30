@@ -8,8 +8,7 @@ data2_t mult_4bit(data_t a, data_t b)
 void dotProd(
     data_t row1[DMODEL],
     data_t row2[DMODEL],
-    data3_t &result,
-    data_t &result2, // This is for fast normalizing then quantizing
+    data3_t &result
     )
 {
     result = 0;
