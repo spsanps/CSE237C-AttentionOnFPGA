@@ -8,14 +8,36 @@ void project(data_t token[DMODEL],
              data_t output[DMODEL])
 {
     data3_t result = 0;
+    data3_t max_result = 0;
+    data3_t temp_results[DMODEL];
     for (int i = 0; i < DMODEL; i++)
     {
         #pragma HLS unroll off=true
         // Keep only the BITWIDTH len most significant bits
         dotProd(token, weight[i], result);
 
-        output[i] = result >> (BITWIDTH3 - BITWIDTH); // Corrected syntax
+        // normalize layer
+        max_result = result > max_result ? result : max_result;
+
+        // this is bad actually, should be done in dotProd
+        temp_results[i] = result; // Corrected syntax
     }
+    // Normalize
+    // find shift amount
+    int shift_amount = 0;
+    while (max_result > 1)
+    {
+        max_result = max_result >> 1;
+        shift_amount++;
+    }
+    // shift and quantize
+    for (int i = 0; i < DMODEL; i++)
+    {
+        // unroll completely
+        #pragma HLS UNROLL
+        output[i] = temp_results[i] >> shift_amount;
+    }
+
 }
 
 void project_all(data_t tokens[N][DMODEL],
