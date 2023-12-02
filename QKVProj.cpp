@@ -10,6 +10,7 @@ void project(data_t token[DMODEL],
     data3_t result = 0;
     data3_t max_result = 0;
     data3_t temp_results[DMODEL];
+    data3_t min_result = (1ULL << BITWIDTH3) - 1;
     for (int i = 0; i < DMODEL; i++)
     {
         #pragma HLS unroll off=true
@@ -18,14 +19,19 @@ void project(data_t token[DMODEL],
 
         // normalize layer
         max_result = result > max_result ? result : max_result;
+        min_result = result < min_result ? result : min_result;
 
         // this is bad actually, should be done in dotProd
         temp_results[i] = result; // Corrected syntax
+
+
+
     }
     // Normalize
     // find shift amount
     int shift_amount = 0;
-    while (max_result > 1)
+    max_result = max_result - min_result;
+    while (max_result > 16)
     {
         max_result = max_result >> 1;
         shift_amount++;
@@ -35,7 +41,7 @@ void project(data_t token[DMODEL],
     {
         // unroll completely
         #pragma HLS UNROLL
-        output[i] = temp_results[i] >> shift_amount;
+        output[i] = (temp_results[i] - min_result) >> shift_amount;
     }
 
 }

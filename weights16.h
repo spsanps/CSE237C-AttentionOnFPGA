@@ -2,17 +2,6 @@
 #ifndef WEIGHTS_H
 #define WEIGHTS_H
 
-#ifndef ATTENTION_H
-#define ATTENTION_H
-
-#include "attention.h"
-
-#endif // ATTENTION_H
-
-// check if DMODEL is 16
-#if DMODEL != 16
-#error "DMODEL must be 16"
-#endif
 
 // Define a 16x16 weight matrix for Q, K, and V
 data_t Q_W[16][16] = {{14, 15, 8, 14, 2, 13, 6, 5, 11, 4, 12, 1, 12, 14, 7, 14},

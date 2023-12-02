@@ -1,12 +1,14 @@
 #include <iostream>
 #include <ap_int.h>
 #include "attention.h"
+#include "weights16.h"
+
 
 // Helper function to initialize matrices with some test data
 void initialize_matrix(data_t matrix[N][DMODEL]) {
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < DMODEL; j++) {
-            matrix[i][j] = (data_t)(i * DMODEL + j); // Simple sequential initialization
+            matrix[i][j] = (data_t)(i + 5*j); // Simple sequential initialization
         }
     }
 }
@@ -31,10 +33,19 @@ int main() {
 
     // Initialize matrices with test data
     initialize_matrix(tokens);
-    initialize_matrix(weightsQ);
-    initialize_matrix(weightsK);
-    initialize_matrix(weightsV);
+    // initialize_matrix(weightsQ);
+    // initialize_matrix(weightsK);
+    // initialize_matrix(weightsV);
 
+    // intialize weights from Q_W, K_W, V_W
+
+    for (int i = 0; i < DMODEL; i++) {
+        for (int j = 0; j < DMODEL; j++) {
+            weightsQ[i][j] = (data_t)Q_W[i][j];
+            weightsK[i][j] = (data_t)K_W[i][j];
+            weightsV[i][j] = (data_t)V_W[i][j];
+        }
+    }
     // Print the initialized matrices
     print_matrix("Tokens", tokens);
     print_matrix("WeightsQ", weightsQ);
