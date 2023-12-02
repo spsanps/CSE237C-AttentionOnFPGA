@@ -1,7 +1,7 @@
 #include <iostream>
 #include <ap_int.h>
 #include "attention.h"
-#include "weights16.h"
+// #include "weights16.h"
 
 
 // Helper function to initialize matrices with some test data
@@ -14,7 +14,7 @@ void initialize_matrix(data_t matrix[N][DMODEL]) {
 }
 
 // Helper function to print matrices
-void print_matrix(const char* name, data_t matrix[N][DMODEL]) {
+void print_matrix_simple(const char* name, data_t matrix[N][DMODEL]) {
     std::cout << name << ":\n";
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < DMODEL; j++) {
@@ -24,7 +24,7 @@ void print_matrix(const char* name, data_t matrix[N][DMODEL]) {
     }
 }
 
-int main() {
+int main5() {
     data_t tokens[N][DMODEL];
     data_t weightsQ[DMODEL][DMODEL];
     data_t weightsK[DMODEL][DMODEL];
@@ -33,30 +33,30 @@ int main() {
 
     // Initialize matrices with test data
     initialize_matrix(tokens);
-    // initialize_matrix(weightsQ);
-    // initialize_matrix(weightsK);
-    // initialize_matrix(weightsV);
+    initialize_matrix(weightsQ);
+    initialize_matrix(weightsK);
+    initialize_matrix(weightsV);
 
     // intialize weights from Q_W, K_W, V_W
 
-    for (int i = 0; i < DMODEL; i++) {
+    /*for (int i = 0; i < DMODEL; i++) {
         for (int j = 0; j < DMODEL; j++) {
             weightsQ[i][j] = (data_t)Q_W[i][j];
             weightsK[i][j] = (data_t)K_W[i][j];
             weightsV[i][j] = (data_t)V_W[i][j];
         }
-    }
+    }*/
     // Print the initialized matrices
-    print_matrix("Tokens", tokens);
-    print_matrix("WeightsQ", weightsQ);
-    print_matrix("WeightsK", weightsK);
-    print_matrix("WeightsV", weightsV);
+    print_matrix_simple("Tokens", tokens);
+    print_matrix_simple("WeightsQ", weightsQ);
+    print_matrix_simple("WeightsK", weightsK);
+    print_matrix_simple("WeightsV", weightsV);
 
     // Call the attention function
     attention(tokens, weightsQ, weightsK, weightsV, output);
 
     // Print the output matrix
-    print_matrix("Output", output);
+    print_matrix_simple("Output", output);
 
     return 0;
 }
