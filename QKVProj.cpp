@@ -40,13 +40,24 @@ void project(data_t token[DMODEL],
 
 }
 
-void project_all(data_t tokens[N][DMODEL],
+// void project_all(hls::stream<data_t> &tokens
+// void project_all(data_t tokens[N][DMODEL]
+
+void project_all(hls::stream<data_t> &tokens,
                  data_t weights[DMODEL][DMODEL],
                  data_t outputs[N][DMODEL])
 {
     for (int i = 0; i < N; i++)
     {
         #pragma HLS unroll off=true
-        project(tokens[i], weights, outputs[i]);
+
+    	data_t tokens_arr[DMODEL];
+    	for (int j=0; j<DMODEL; j++) tokens_arr[j] = tokens.read();
+
+    	printf("tokens_arr[%d]: ", i);
+    	for (int j=0; j<DMODEL; j++) printf("%d, ", i, tokens_arr);
+    	printf("/n");
+
+        project(tokens_arr, weights, outputs[i]);
     }
 }

@@ -22,8 +22,22 @@ void attention(data_t tokens[N][DMODEL],
                data_t output[N][DMODEL])
 {
     data_t K[N][DMODEL];
+
+    printf("Beginning the attention");
+
+    static hls::stream<data_t> tokens_stream("tokens_stream");
+    #pragma HLS STREAM variable=tokens_stream depth=N*DMODEL
+
+    for (int i=N; i > 0; --i) {
+    	for (int j=DMODEL; j>0; --j) {
+    		tokens_stream << tokens[i-1][j-1];
+    	}
+    }
+
+    printf("Populated tokens stream, beginning projection");
+
     // compute K
-    project_all(tokens, weightsK, K);
+    project_all(tokens_stream, weightsK, K);
 
     for (int i = 0; i < N; i++)
     {

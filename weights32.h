@@ -14,9 +14,6 @@
 #error "DMODEL must be 32"
 #endif
 
-// Assuming data_t is an unsigned 4-bit type
-typedef unsigned char data_t; // Using unsigned char as a placeholder
-
 // Define a 32x32 weight matrix for Q, K, and V
 data_t Q_W[32][32] = {{10, 14, 4, 12, 4, 11, 14, 7, 6, 7, 14, 3, 12, 7, 6, 11, 1, 2, 15, 6, 7, 7, 15, 5, 13, 4, 2, 14, 0, 15, 2, 11},
                       {0, 3, 14, 14, 4, 13, 11, 8, 6, 1, 9, 9, 3, 4, 7, 7, 5, 0, 12, 15, 14, 0, 2, 13, 7, 13, 12, 14, 2, 5, 6, 8},
