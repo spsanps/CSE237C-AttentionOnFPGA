@@ -5,7 +5,7 @@
 // take token (1 x DMODEL), weight (DMODEL x DMODEL) and return (1 x DMODEL)output
 void project(data_t token[DMODEL],
              data_t weight[DMODEL][DMODEL],
-             data_t output[DMODEL])
+			 hls::stream<data_t> &output)
 {
     data3_t result = 0;
     data3_t max_result = 0;
@@ -35,7 +35,7 @@ void project(data_t token[DMODEL],
     {
         // unroll completely
         #pragma HLS UNROLL
-        output[i] = temp_results[i] >> shift_amount;
+        output << (temp_results[i] >> shift_amount);
     }
 
 }
@@ -45,7 +45,7 @@ void project(data_t token[DMODEL],
 
 void project_all(hls::stream<data_t> &tokens,
                  data_t weights[DMODEL][DMODEL],
-                 data_t outputs[N][DMODEL])
+				 hls::stream<data_t> &outputs)
 {
     for (int i = 0; i < N; i++)
     {
@@ -54,10 +54,10 @@ void project_all(hls::stream<data_t> &tokens,
     	data_t tokens_arr[DMODEL];
     	for (int j=0; j<DMODEL; j++) tokens_arr[j] = tokens.read();
 
-    	printf("tokens_arr[%d]: ", i);
-    	for (int j=0; j<DMODEL; j++) printf("%d, ", i, tokens_arr);
-    	printf("/n");
+    	data_t outputs_arr[DMODEL];
+        project(tokens_arr, weights, outputs);
 
-        project(tokens_arr, weights, outputs[i]);
+//       for (int j=0; j<DMODEL; j++) outputs << outputs_arr[j];
+
     }
 }

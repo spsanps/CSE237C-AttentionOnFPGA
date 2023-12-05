@@ -21,7 +21,8 @@ void attention(data_t tokens[N][DMODEL],
                data_t weightsV[DMODEL][DMODEL],
                data_t output[N][DMODEL])
 {
-    data_t K[N][DMODEL];
+    static hls::stream<data_t> K("K");
+    #pragma HLS STREAM variable=K depth=N*DMODEL
 
     printf("Beginning the attention");
 
@@ -39,18 +40,33 @@ void attention(data_t tokens[N][DMODEL],
     // compute K
     project_all(tokens_stream, weightsK, K);
 
+    data_t single_qk_k[N][DMODEL];
+
+    for (int i=N; i > 0; --i) {
+    	for (int j=DMODEL; j>0; --j) {
+    		single_qk_k[i-1][j-1] = K.read();
+    	}
+    }
+
     for (int i = 0; i < N; i++)
     {
         #pragma HLS unroll off=true
         // compute Q
-        data_t Q[DMODEL];
+//        data_t Q[DMODEL];
+    	static hls::stream<data_t> Q("Q");
+		#pragma HLS STREAM variable=Q depth=DMODEL
         project(tokens[i], weightsQ, Q);
 
         // compute max_index
         int max_index = 0;
-        singleQK(Q, K, max_index);
+        data_t Q_arr[DMODEL];
+        for (int j=DMODEL-1; j>=0; --j) Q_arr[j] = Q.read();
+        singleQK(Q_arr, single_qk_k, max_index);
 
         // compute V
-        project(tokens[max_index], weightsV, output[i]);
+    	static hls::stream<data_t> op_stream("op_stream");
+		#pragma HLS STREAM variable=op_stream depth=DMODEL
+        project(tokens[max_index], weightsV, op_stream);
+        for (int j=DMODEL-1; j>=0; --j) output[N-i-1][j] = op_stream.read();
     }
 }
