@@ -46,13 +46,21 @@ void project(data_t token[DMODEL],
 
 }
 
-void project_all(data_t tokens[N][DMODEL],
+void project_all(hls::stream<data_t> &tokens,
                  data_t weights[DMODEL][DMODEL],
-                 data_t outputs[N][DMODEL])
+				 hls::stream<data_t> &outputs)
 {
     for (int i = 0; i < N; i++)
     {
         #pragma HLS unroll off=true
-        project(tokens[i], weights, outputs[i]);
+
+    	data_t tokens_arr[DMODEL];
+    	for (int j=0; j<DMODEL; j++) tokens_arr[j] = tokens.read();
+
+    	data_t outputs_arr[DMODEL];
+        project(tokens_arr, weights, outputs_arr);
+
+       for (int j=0; j<DMODEL; j++) outputs << outputs_arr[j];
+
     }
 }

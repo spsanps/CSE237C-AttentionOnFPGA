@@ -15,7 +15,7 @@
 #endif
 
 // Assuming data_t is an unsigned 4-bit type
-typedef unsigned char data_t; // Using unsigned char as a placeholder
+// typedef unsigned char data_t; // Using unsigned char as a placeholder
 
 // Define a 32x32 weight matrix for Q, K, and V
 data_t Q_W[32][32] = {{10, 14, 4, 12, 4, 11, 14, 7, 6, 7, 14, 3, 12, 7, 6, 11, 1, 2, 15, 6, 7, 7, 15, 5, 13, 4, 2, 14, 0, 15, 2, 11},

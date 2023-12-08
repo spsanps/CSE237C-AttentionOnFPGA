@@ -2,6 +2,7 @@
 #define ATTENTION_H
 
 #include <ap_int.h>
+#include <hls_stream.h>
 
 // Define the bit width
 // Bit Width of each value in the token vector

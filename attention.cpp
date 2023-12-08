@@ -30,14 +30,30 @@ void attention(data_t tokens[N][DMODEL],
                data_t weightsV[DMODEL][DMODEL],
                data_t output[N][DMODEL])
 {
-    data_t K[N][DMODEL];
     data_t temp_token[DMODEL];
 
+    static hls::stream<data_t> K("K");
+    #pragma HLS STREAM variable=K depth=N*DMODEL
+
+    static hls::stream<data_t> tokens_stream("tokens_stream");
+    #pragma HLS STREAM variable=tokens_stream depth=N*DMODEL
+
+    for (int i=N; i > 0; --i) {
+    	for (int j=DMODEL; j>0; --j) {
+    		tokens_stream << tokens[i-1][j-1];
+    	}
+    }
+
     // compute K
-    project_all(tokens, weightsK, K);
-    // print the K matrix
-    // std::cout << "K:\n";
-    // (K);
+    project_all(tokens_stream, weightsK, K);
+
+    data_t single_qk_k[N][DMODEL];
+
+    for (int i=N; i > 0; --i) {
+    	for (int j=DMODEL; j>0; --j) {
+    		single_qk_k[i-1][j-1] = K.read();
+    	}
+    }
 
     for (int i = 0; i < N; i++)
     {
@@ -55,7 +71,7 @@ void attention(data_t tokens[N][DMODEL],
 
         // compute max_index
         int max_index = 0;
-        singleQK(Q, K, max_index);
+        singleQK(Q, single_qk_k, max_index);
         // std::cout << "max_index: " << max_index << "\n";
 
         // compute V
