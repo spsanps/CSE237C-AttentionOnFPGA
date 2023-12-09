@@ -1,2 +1,8 @@
 *vscode*
-*csv*
+*.csv
+*.zip
+*.log
+vivado/
+hls/
+hls_project/
+export/
