@@ -7,7 +7,7 @@ int multiply_4bit(int a, int b) {
     return 0; // Placeholder return value
 }
 
-int main4() {
+int main6() {
     int a = 5; // Placeholder input value
     int b = 3; // Placeholder input value
     

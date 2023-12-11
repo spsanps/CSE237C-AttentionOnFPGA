@@ -46,7 +46,15 @@ int main1() {
     }
 
     // Perform projection
-    project_all(tokens, weights, outputs);
+    static hls::stream<data_t> output_stream("output_stream");
+    #pragma HLS STREAM variable=output_stream depth=DMODEL
+    project_all(tokens, weights, output_stream);
+    for (int i=0; i<N; i++) {
+    	for (int j=0; j<DMODEL; j++) {
+    		outputs[i][j] = output_stream.read();
+    	}
+    }
+
 
     // Print the results
     std::cout << "Tokens:" << std::endl;
