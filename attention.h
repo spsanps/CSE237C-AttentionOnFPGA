@@ -34,11 +34,11 @@ typedef ap_uint<BITWIDTH3> data3_t;
 // only 16, 32 or 64 are supported
 #define DMODEL 16
 
-void attention(data_t tokens[N][DMODEL],
+void attention(hls::stream<data_t> &tokens_stream,
                data_t weightsQ[DMODEL][DMODEL],
                data_t weightsK[DMODEL][DMODEL],
                data_t weightsV[DMODEL][DMODEL],
-               data_t output[N][DMODEL]);
+               hls::stream<data_t> &output_stream);
 
 // Include the appropriate weights file based on DMODEL value
 //#if DMODEL == 16
