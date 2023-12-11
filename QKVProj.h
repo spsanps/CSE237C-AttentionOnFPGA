@@ -5,6 +5,10 @@
 #include "attention.h"
 #include "dotProd.h"
 
+void project_stream(data_t token[DMODEL],
+             data_t weight[DMODEL][DMODEL],
+             hls::stream<data_t> &output);
+
 void project(data_t token[DMODEL],
              data_t weight[DMODEL][DMODEL],
              data_t output[DMODEL]);

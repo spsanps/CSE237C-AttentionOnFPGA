@@ -7,12 +7,12 @@
 
 void print_vector(data_t vector[DMODEL])
 {
-    for (int i = 0; i < DMODEL; i++)
-    {
-#pragma HLS unroll off = true
-        std::cout << vector[i] << " ";
-    }
-    std::cout << "\n";
+//    for (int i = 0; i < DMODEL; i++)
+//    {
+//#pragma HLS unroll off = true
+//        std::cout << vector[i] << " ";
+//    }
+//    std::cout << "\n";
 }
 
 void print_matrix(data_t matrix[N][DMODEL])
