@@ -66,7 +66,12 @@ void attention(data_t tokens[N][DMODEL],
 #pragma HLS unroll
             temp_token[j] = tokens[i][j];
         }
-        project(temp_token, weightsQ, Q);
+        static hls::stream<data_t> Q_stream("Q_stream");
+        #pragma HLS STREAM variable=Q_stream depth=DMODEL
+        project_stream(temp_token, weightsQ, Q_stream);
+
+        for(int j=DMODEL-1; j>=0; j--) Q[j] = Q_stream.read();
+
         // print_vector(Q);
 
         // compute max_index
@@ -81,6 +86,10 @@ void attention(data_t tokens[N][DMODEL],
 #pragma HLS unroll
             temp_token[j] = tokens[max_index][j];
         }
-        project(temp_token, weightsV, output[i]);
+        static hls::stream<data_t> output_stream("output_stream");
+        #pragma HLS STREAM variable=output_stream depth=DMODEL
+        project_stream(temp_token, weightsV, output_stream);
+
+        for (int j=0; j<DMODEL; j++) output[i][j] = output_stream.read();
     }
 }
