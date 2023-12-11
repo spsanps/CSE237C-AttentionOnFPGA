@@ -31,6 +31,11 @@ int main4() {
         Q[i] = i; // Example values for Q
     }
 
+    static hls::stream<data_t> Q_stream("tokens_stream");
+    #pragma HLS STREAM variable=Q_stream depth=DMODEL
+
+    for (int i=DMODEL; i >= 0; --i) Q_stream << Q[i];
+
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < DMODEL; ++j) {
             K[i][j] = (2*(i -10) + j*5 + 3) % DMODEL; // Example values for K
@@ -38,7 +43,7 @@ int main4() {
     }
 
     // Call the function under test
-    singleQK(Q, K, max_index);
+    singleQK(Q_stream, K, max_index);
 
     // Print the input and the result
     printVector(Q, "Q Vector");

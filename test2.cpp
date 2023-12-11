@@ -165,8 +165,8 @@ int main()
         static hls::stream<data_t> tokens_stream("tokens_stream");
         #pragma HLS STREAM variable=tokens_stream depth=N*DMODEL
 
-        for (int i=N; i > 0; --i) {
-        	for (int j=DMODEL; j>0; --j) {
+        for (int i=N; i >= 0; --i) {
+        	for (int j=DMODEL; j>=0; --j) {
         		tokens_stream << tokens[i-1][j-1];
         	}
         }
