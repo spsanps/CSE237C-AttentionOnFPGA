@@ -5,7 +5,7 @@
 #include <algorithm> // Include for max_element
 #include <fstream>
 #include "attention.h"
-#include "weights16.h"
+
 
 using data_t_test = double; // Data type for computation
 
@@ -52,88 +52,6 @@ void print_matrix2(const char *name, double matrix[N][DMODEL])
     }
 }
 
-// Softmax function with numerical stability checks
-void softmax(data_t_test matrix[N][DMODEL])
-{
-    for (int i = 0; i < N; i++)
-    {
-        double max_val = *std::max_element(matrix[i], matrix[i] + DMODEL);
-        double sum = 0.0;
-
-        for (int j = 0; j < DMODEL; j++)
-        {
-            matrix[i][j] = exp(matrix[i][j] - max_val); // Shift by max for numerical stability
-            sum += matrix[i][j];
-        }
-
-        if (sum != 0) // Check for zero division
-        {
-            for (int j = 0; j < DMODEL; j++)
-            {
-                matrix[i][j] /= sum;
-            }
-        }
-    }
-}
-
-// Scaled Dot-Product Attention
-void scaled_dot_product_attention(
-    data_t tokens[N][DMODEL],
-    data_t Q_W[N][DMODEL],
-    data_t K_W[N][DMODEL],
-    data_t V_W[N][DMODEL],
-    data_t_test output[N][DMODEL])
-{
-
-    data_t_test Q[N][DMODEL] = {0};
-    data_t_test K[N][DMODEL] = {0};
-    data_t_test V[N][DMODEL] = {0};
-
-    // Dot product with weights
-    for (int i = 0; i < N; i++)
-    {
-        for (int j = 0; j < DMODEL; j++)
-        {
-            for (int k = 0; k < DMODEL; k++)
-            {
-                Q[i][j] += tokens[i][k] * Q_W[k][j];
-                K[i][j] += tokens[i][k] * K_W[k][j];
-                V[i][j] += tokens[i][k] * V_W[k][j];
-            }
-        }
-    }
-
-    data_t_test temp[N][DMODEL] = {0};
-
-    // Calculate Q*K^T
-    for (int i = 0; i < N; i++)
-    {
-        for (int j = 0; j < N; j++)
-        {
-            for (int k = 0; k < DMODEL; k++)
-            {
-                temp[i][j] += Q[i][k] * K[j][k];
-            }
-            temp[i][j] /= sqrt(DMODEL); // Scale
-        }
-    }
-
-    // Apply softmax
-    softmax(temp);
-
-    // Calculate temp*V
-    for (int i = 0; i < N; i++)
-    {
-        for (int j = 0; j < DMODEL; j++)
-        {
-            output[i][j] = 0;
-            for (int k = 0; k < N; k++)
-            {
-                output[i][j] += temp[i][k] * V[k][j];
-            }
-        }
-    }
-}
 
 // Compute Mean Squared Error
 double root_mean_squared_error(data_t output[N][DMODEL], data_t expected[N][DMODEL])
