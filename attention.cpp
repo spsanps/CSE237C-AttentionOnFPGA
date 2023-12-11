@@ -30,6 +30,14 @@ void attention(hls::stream<data_t> &tokens_stream,
                data_t weightsV[DMODEL][DMODEL],
 			   hls::stream<data_t> &output_stream)
 {
+
+#pragma HLS INTERFACE axis port = tokens_stream depth = N*DMODEL
+#pragma HLS INTERFACE axis port = output_stream depth = N*DMODEL
+
+#pragma HLS ARRAY_PARTITION variable = weightsQ complete dim = 2
+#pragma HLS ARRAY_PARTITION variable = weightsK complete dim = 2
+#pragma HLS ARRAY_PARTITION variable = weightsV complete dim = 2
+
     data_t tokens[N][DMODEL];
 
     for (int i=N; i > 0; --i) {
