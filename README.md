@@ -78,3 +78,5 @@ Sanity checks for attention.cpp
 ### test2.cpp
 Error check for attention.cpp
 
+### PYNQ_DEMO (only present in streaming_for_PYNQ branch)
+.hwh, .bit and .ipynb for running attention on PYNQ
