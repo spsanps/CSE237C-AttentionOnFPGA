@@ -10,13 +10,13 @@
 
 // Define the value of N
 // Number of tokens (each token is a vector)
-#define N 16
+#define N 64
 
 // Define the value of DMODEL
 // length of a single token vector
 // Ie. each token is a vector of length DMODEL
 // only 16, 32 or 64 are supported
-#define DMODEL 16
+#define DMODEL 64
 
 #if DMODEL == 16
 #define LOG2N 4
@@ -43,23 +43,16 @@ typedef ap_uint<BITWIDTH2> data2_t;
 // additions of 8 bit values can overflow 8 bits
 typedef ap_uint<BITWIDTH3> data3_t;
 
-
-
-void attention(hls::stream<data_t> &tokens_stream,
+/*void attention(hls::stream<data_t> &tokens_stream,
                data_t weightsQ[DMODEL][DMODEL],
                data_t weightsK[DMODEL][DMODEL],
                data_t weightsV[DMODEL][DMODEL],
-               hls::stream<data_t> &output_stream);
+               hls::stream<data_t> &output_stream);*/
 
-// Include the appropriate weights file based on DMODEL value
-#if DMODEL == 16
-#include "weights16.h"
-#elif DMODEL == 32
-#include "weights32.h"
-#elif DMODEL == 64
-#include "weights64.h"
-#else
-#error "Unsupported DMODEL value"
-#endif
+void attention(data_t tokens[N][DMODEL],
+               data_t weightsQ[DMODEL][DMODEL],
+               data_t weightsK[DMODEL][DMODEL],
+               data_t weightsV[DMODEL][DMODEL],
+               data_t output[N][DMODEL]);
 
 #endif // ATTENTION_H

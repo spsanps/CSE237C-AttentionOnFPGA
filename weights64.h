@@ -2,20 +2,10 @@
 #ifndef WEIGHTS_H
 #define WEIGHTS_H
 
-#ifndef ATTENTION_H
-#define ATTENTION_H
-
-#include "attention.h"
-
-#endif // ATTENTION_H
-
 // check if DMODEL is 64
 #if DMODEL != 64
 #error "DMODEL must be 64"
 #endif
-
-// Assuming data_t is an unsigned 4-bit type
-typedef unsigned char data_t; // Using unsigned char as a placeholder
 
 // Define a 64x64 weight matrix for Q, K, and V
 data_t Q_W[64][64] = {{4, 14, 14, 12, 0, 1, 1, 8, 13, 9, 2, 1, 8, 7, 15, 13, 2, 12, 8, 9, 13, 3, 15, 7, 1, 9, 3, 13, 15, 6, 8, 11, 12, 10, 14, 12, 2, 6, 2, 6, 5, 6, 0, 8, 15, 12, 1, 7, 13, 14, 15, 5, 13, 6, 2, 5, 2, 9, 4, 8, 7, 11, 13, 12},

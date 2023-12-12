@@ -6,6 +6,16 @@
 #include <fstream>
 #include "attention.h"
 
+// Include the appropriate weights file based on DMODEL value
+#if DMODEL == 16
+#include "weights16.h"
+#elif DMODEL == 32
+#include "weights32.h"
+#elif DMODEL == 64
+#include "weights64.h"
+#else
+#error "Unsupported DMODEL value"
+#endif
 
 using data_t_test = double; // Data type for computation
 
@@ -51,7 +61,6 @@ void print_matrix2(const char *name, double matrix[N][DMODEL])
         std::cout << "\n";
     }
 }
-
 
 // Compute Mean Squared Error
 double root_mean_squared_error(data_t output[N][DMODEL], data_t expected[N][DMODEL])
@@ -102,8 +111,6 @@ double root_mean_squared_error(data_t output[N][DMODEL], data_t expected[N][DMOD
         }
     }
 
-
-
     for (int i = 0; i < N; i++)
     {
         for (int j = 0; j < DMODEL; j++)
@@ -115,7 +122,6 @@ double root_mean_squared_error(data_t output[N][DMODEL], data_t expected[N][DMOD
     return sqrt(error / (N * DMODEL));
 }
 
-
 int main()
 {
     data_t tokens[N][DMODEL];
@@ -126,9 +132,10 @@ int main()
     std::cout << "N: " << N << std::endl;
     std::cout << "DMODEL: " << DMODEL << std::endl;
 
+    double total_mse = 0; // Initialize total MSE accumulator
 
     // Open test input file
-    std::ifstream input_file("generate_tests_input.txt");
+    std::ifstream input_file("generate_tests_input64.txt");
     if (!input_file)
     {
         std::cout << "Failed to open generate_tests_input.txt" << std::endl;
@@ -139,7 +146,7 @@ int main()
     std::cout << "Finished opening file" << std::endl;
 
     // Open test output file
-    std::ifstream output_file("generate_tests_output.txt");
+    std::ifstream output_file("generate_tests_output64.txt");
     if (!output_file)
     {
         std::cout << "Failed to open generate_tests_output.txt" << std::endl;
@@ -162,14 +169,16 @@ int main()
             }
         }
 
-        static hls::stream<data_t> tokens_stream("tokens_stream");
-        #pragma HLS STREAM variable=tokens_stream depth=N*DMODEL
+        /*static hls::stream<data_t> tokens_stream("tokens_stream");
+#pragma HLS STREAM variable = tokens_stream depth = N * DMODEL
 
-        for (int i=N; i >= 0; --i) {
-        	for (int j=DMODEL; j>=0; --j) {
-        		tokens_stream << tokens[i-1][j-1];
-        	}
-        }
+        for (int i = N; i >= 0; --i)
+        {
+            for (int j = DMODEL; j >= 0; --j)
+            {
+                tokens_stream << tokens[i - 1][j - 1];
+            }
+        }*/
 
         // read output
         // each line is N*DMODEL tokens
@@ -181,7 +190,6 @@ int main()
             }
         }
 
-
         for (int i = 0; i < DMODEL; i++)
         {
             for (int j = 0; j < DMODEL; j++)
@@ -192,14 +200,16 @@ int main()
             }
         }
 
-        static hls::stream<data_t> output_stream("output_stream");
-        #pragma HLS STREAM variable=output_stream depth=DMODEL
-        attention(tokens_stream, weightsQ, weightsK, weightsV, output_stream);
-        for (int i=0; i<N; i++) {
-        	for (int j=0; j<DMODEL; j++) {
-        		output[i][j] = output_stream.read();
-        	}
-        }
+        //static hls::stream<data_t> output_stream("output_stream");
+// #pragma HLS STREAM variable = output_stream depth = DMODEL
+        attention(tokens, weightsQ, weightsK, weightsV, output);
+        /*for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < DMODEL; j++)
+            {
+                output[i][j] = output_stream.read();
+            }
+        }*/
 
         // Print matrices
         print_matrix1("Tokens", tokens);
@@ -209,16 +219,36 @@ int main()
         print_matrix1("Output", output);
         print_matrix1("Expected Output", expected_output);
 
-        // normalize 
+        // normalize
 
         // Calculate and print the error
         double mse = root_mean_squared_error(output, expected_output);
         std::cout << "Normalized RMSE: " << mse << std::endl;
+
+        total_mse += mse; // Accumulate the error
     }
 
     // Close files
     input_file.close();
     output_file.close();
+
+    double avg_mse = total_mse / 10; // assuming there are 10 test cases
+
+    // Print the average error
+    std::cout << "Average Normalized RMSE: " << avg_mse << std::endl;
+
+    // Save the average error to a file
+    std::ofstream report_file;
+    report_file.open("N" + std::to_string(N) + "_error.txt");
+    if (report_file)
+    {
+        report_file << "Average Normalized RMSE: " << avg_mse << std::endl;
+        report_file.close();
+    }
+    else
+    {
+        std::cout << "Failed to open error report file for writing." << std::endl;
+    }
 
     return 0;
 }

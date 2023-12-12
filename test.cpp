@@ -52,24 +52,24 @@ int main5() {
     print_matrix_simple("WeightsK", weightsK);
     print_matrix_simple("WeightsV", weightsV);
 
-    static hls::stream<data_t> tokens_stream("tokens_stream");
+    /*static hls::stream<data_t> tokens_stream("tokens_stream");
     #pragma HLS STREAM variable=tokens_stream depth=N*DMODEL
 
     for (int i=N; i > 0; --i) {
     	for (int j=DMODEL; j>0; --j) {
     		tokens_stream << tokens[i-1][j-1];
     	}
-    }
+    }*/
 
-    static hls::stream<data_t> output_stream("output_stream");
-    #pragma HLS STREAM variable=output_stream depth=DMODEL
+    // static hls::stream<data_t> output_stream("output_stream");
+    //#pragma HLS STREAM variable=output_stream depth=DMODEL
     // Call the attention function
-    attention(tokens_stream, weightsQ, weightsK, weightsV, output_stream);
-    for (int i=0; i<N; i++) {
+    attention(tokens, weightsQ, weightsK, weightsV, output);
+    /*for (int i=0; i<N; i++) {
     	for (int j=0; j<DMODEL; j++) {
     		output[i][j] = output_stream.read();
     	}
-    }
+    }*/
 
     // Print the output matrix
     print_matrix_simple("Output", output);

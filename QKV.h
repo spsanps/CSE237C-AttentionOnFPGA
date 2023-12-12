@@ -5,6 +5,10 @@
 #include "attention.h"
 #include "dotProd.h"
 
-void singleQK(hls::stream<data_t> &Q, data_t K[N][DMODEL], int &max_index);
+void singleQK(
+    // hls::stream<data_t> &Q,
+    data_t Q[DMODEL],
+    data_t K[N][DMODEL],
+    int &max_index);
 
 #endif // QKV_H
