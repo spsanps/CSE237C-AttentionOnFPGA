@@ -51,15 +51,6 @@ void attention(hls::stream<data_t> &tokens_stream,
                data_t weightsV[DMODEL][DMODEL],
                hls::stream<data_t> &output_stream);
 
-// Include the appropriate weights file based on DMODEL value
-#if DMODEL == 16
-#include "weights16.h"
-#elif DMODEL == 32
-#include "weights32.h"
-#elif DMODEL == 64
-#include "weights64.h"
-#else
-#error "Unsupported DMODEL value"
-#endif
+
 
 #endif // ATTENTION_H
