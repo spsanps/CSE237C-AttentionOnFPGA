@@ -23,7 +23,7 @@ Codebase with axis stream implementation at top level for PYNQ demo at N, DMODEL
 
 This process is repeated for all N inputs, resulting in an output of size N x DMODEL.
 
-## Memory Storage:
+## Note on Memory/Resource 
 
 - Input of size N x DMODEL
 - 3 weights of size DMODEL x DMODEL
