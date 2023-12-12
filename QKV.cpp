@@ -5,6 +5,7 @@
 void singleQK(hls::stream<data_t> &Q_stream, data_t K[N][DMODEL], int &max_index)
 {
 
+#pragma HLS dataflow
     data3_t result = 0;
     data3_t max_result = 0;
     max_index = 0;
