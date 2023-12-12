@@ -1,0 +1,1 @@
+Average Normalized RMSE: 0.169378

@@ -1,0 +1,1256 @@
+
+
+================================================================
+== Synthesis Summary Report of 'attention'
+================================================================
++ General Information: 
+    * Date:           Mon Dec 11 15:16:44 2023
+    * Version:        2023.1 (Build 3854077 on May  4 2023)
+    * Project:        237c_project
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z020-clg400-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-------------------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+---------+----+-------------+-------------+-----+
+    |                        Modules                        | Issue|      | Latency |  Latency  | Iteration|         | Trip |          |         |    |             |             |     |
+    |                        & Loops                        | Type | Slack| (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined|  BRAM   | DSP|      FF     |     LUT     | URAM|
+    +-------------------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+---------+----+-------------+-------------+-----+
+    |+ attention                                            |     -|  0.87|        -|          -|         -|        -|     -|        no|  1 (~0%)|   -|  15821 (14%)|  24085 (45%)|    -|
+    | + attention_Pipeline_VITIS_LOOP_35_1_VITIS_LOOP_36_2  |     -|  0.87|     1026|  1.026e+04|         -|     1026|     -|        no|        -|   -|     36 (~0%)|    182 (~0%)|    -|
+    |  o VITIS_LOOP_35_1_VITIS_LOOP_36_2                    |     -|  7.30|     1024|  1.024e+04|         2|        1|  1024|       yes|        -|   -|            -|            -|    -|
+    | + attention_Pipeline_VITIS_LOOP_51_3_VITIS_LOOP_52_4  |     -|  0.87|     1026|  1.026e+04|         -|     1026|     -|        no|        -|   -|     36 (~0%)|    182 (~0%)|    -|
+    |  o VITIS_LOOP_51_3_VITIS_LOOP_52_4                    |     -|  7.30|     1024|  1.024e+04|         2|        1|  1024|       yes|        -|   -|            -|            -|    -|
+    | o VITIS_LOOP_52_1                                     |     -|  7.30|        -|          -|         -|        -|     -|        no|        -|   -|            -|            -|    -|
+    |  + project                                            |     -|  1.20|        -|          -|         -|        -|     -|        no|        -|   -|    7556 (7%)|  11509 (21%)|    -|
+    |   + project_Pipeline_VITIS_LOOP_33_2                  |     -|  3.16|        -|          -|         -|        -|     -|        no|        -|   -|     48 (~0%)|     91 (~0%)|    -|
+    |    o VITIS_LOOP_33_2                                  |     -|  7.30|        -|          -|         1|        1|     -|       yes|        -|   -|            -|            -|    -|
+    |   o VITIS_LOOP_13_1                                   |     -|  7.30|      160|  1.600e+03|         5|        -|    32|        no|        -|   -|            -|            -|    -|
+    |    + dotProd_64*                                      |     -|  1.75|        0|      0.000|         -|        1|     -|  dataflow|        -|   -|    7038 (6%)|   7014 (13%)|    -|
+    |     + mult_4bit_33                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry2153_proc                 |     -|  3.67|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     20 (~0%)|    -|
+    |     + mult_4bit_34                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry2186_proc                 |     -|  1.75|        0|      0.000|         -|        0|     -|        no|        -|   -|     11 (~0%)|     34 (~0%)|    -|
+    |     + mult_4bit_35                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21119_proc                |     -|  1.84|        0|      0.000|         -|        0|     -|        no|        -|   -|     12 (~0%)|     33 (~0%)|    -|
+    |     + mult_4bit_36                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21152_proc                |     -|  1.93|        0|      0.000|         -|        0|     -|        no|        -|   -|     12 (~0%)|     33 (~0%)|    -|
+    |     + mult_4bit_37                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21185_proc                |     -|  1.93|        0|      0.000|         -|        0|     -|        no|        -|   -|     13 (~0%)|     32 (~0%)|    -|
+    |     + mult_4bit_38                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21218_proc                |     -|  2.03|        0|      0.000|         -|        0|     -|        no|        -|   -|     13 (~0%)|     32 (~0%)|    -|
+    |     + mult_4bit_39                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21251_proc                |     -|  2.03|        0|      0.000|         -|        0|     -|        no|        -|   -|     13 (~0%)|     32 (~0%)|    -|
+    |     + mult_4bit_40                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21284_proc                |     -|  2.03|        0|      0.000|         -|        0|     -|        no|        -|   -|     13 (~0%)|     32 (~0%)|    -|
+    |     + mult_4bit_41                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21317_proc                |     -|  2.03|        0|      0.000|         -|        0|     -|        no|        -|   -|     14 (~0%)|     32 (~0%)|    -|
+    |     + mult_4bit_42                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21350_proc                |     -|  2.12|        0|      0.000|         -|        0|     -|        no|        -|   -|     14 (~0%)|     32 (~0%)|    -|
+    |     + mult_4bit_43                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21383_proc                |     -|  2.12|        0|      0.000|         -|        0|     -|        no|        -|   -|     14 (~0%)|     32 (~0%)|    -|
+    |     + mult_4bit_44                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21416_proc                |     -|  2.12|        0|      0.000|         -|        0|     -|        no|        -|   -|     14 (~0%)|     32 (~0%)|    -|
+    |     + mult_4bit_45                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21449_proc                |     -|  2.12|        0|      0.000|         -|        0|     -|        no|        -|   -|     14 (~0%)|     32 (~0%)|    -|
+    |     + mult_4bit_46                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21482_proc                |     -|  2.12|        0|      0.000|         -|        0|     -|        no|        -|   -|     14 (~0%)|     32 (~0%)|    -|
+    |     + mult_4bit_47                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21515_proc                |     -|  2.12|        0|      0.000|         -|        0|     -|        no|        -|   -|     14 (~0%)|     32 (~0%)|    -|
+    |     + mult_4bit_48                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21548_proc                |     -|  2.12|        0|      0.000|         -|        0|     -|        no|        -|   -|     14 (~0%)|     32 (~0%)|    -|
+    |     + mult_4bit_49                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21581_proc                |     -|  2.12|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |     + mult_4bit_50                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21614_proc                |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |     + mult_4bit_51                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21647_proc                |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |     + mult_4bit_52                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21680_proc                |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |     + mult_4bit_53                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21713_proc                |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |     + mult_4bit_54                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21746_proc                |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |     + mult_4bit_55                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21779_proc                |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |     + mult_4bit_56                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21812_proc                |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |     + mult_4bit_57                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21845_proc                |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |     + mult_4bit_58                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21878_proc                |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |     + mult_4bit_59                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21911_proc                |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |     + mult_4bit_60                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21944_proc                |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |     + mult_4bit_61                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry21977_proc                |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |     + mult_4bit_62                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry211010_proc               |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |     + mult_4bit_63                                    |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry211043_proc               |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |     + mult_4bit                                       |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |     + dotProd_64_Block_entry211076_proc               |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    | o VITIS_LOOP_57_5                                     |     -|  7.30|        -|          -|         -|        -|     -|        no|        -|   -|            -|            -|    -|
+    |  o VITIS_LOOP_13_1                                    |     -|  7.30|       64|    640.000|         2|        -|    32|        no|        -|   -|            -|            -|    -|
+    |  o VITIS_LOOP_15_2                                    |     -|  7.30|      160|  1.600e+03|         5|        -|    32|        no|        -|   -|            -|            -|    -|
+    |   + dotProd*                                          |     -|  1.75|        0|      0.000|         -|        1|     -|  dataflow|        -|   -|    7038 (6%)|   7014 (13%)|    -|
+    |    + mult_4bit_1                                      |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85117_proc                    |     -|  3.67|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     20 (~0%)|    -|
+    |    + mult_4bit_2                                      |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85150_proc                    |     -|  1.75|        0|      0.000|         -|        0|     -|        no|        -|   -|     11 (~0%)|     34 (~0%)|    -|
+    |    + mult_4bit_3                                      |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85183_proc                    |     -|  1.84|        0|      0.000|         -|        0|     -|        no|        -|   -|     12 (~0%)|     33 (~0%)|    -|
+    |    + mult_4bit_4                                      |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85216_proc                    |     -|  1.93|        0|      0.000|         -|        0|     -|        no|        -|   -|     12 (~0%)|     33 (~0%)|    -|
+    |    + mult_4bit_5                                      |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85249_proc                    |     -|  1.93|        0|      0.000|         -|        0|     -|        no|        -|   -|     13 (~0%)|     32 (~0%)|    -|
+    |    + mult_4bit_6                                      |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85282_proc                    |     -|  2.03|        0|      0.000|         -|        0|     -|        no|        -|   -|     13 (~0%)|     32 (~0%)|    -|
+    |    + mult_4bit_7                                      |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85315_proc                    |     -|  2.03|        0|      0.000|         -|        0|     -|        no|        -|   -|     13 (~0%)|     32 (~0%)|    -|
+    |    + mult_4bit_8                                      |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85348_proc                    |     -|  2.03|        0|      0.000|         -|        0|     -|        no|        -|   -|     13 (~0%)|     32 (~0%)|    -|
+    |    + mult_4bit_9                                      |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85381_proc                    |     -|  2.03|        0|      0.000|         -|        0|     -|        no|        -|   -|     14 (~0%)|     32 (~0%)|    -|
+    |    + mult_4bit_10                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85414_proc                    |     -|  2.12|        0|      0.000|         -|        0|     -|        no|        -|   -|     14 (~0%)|     32 (~0%)|    -|
+    |    + mult_4bit_11                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85447_proc                    |     -|  2.12|        0|      0.000|         -|        0|     -|        no|        -|   -|     14 (~0%)|     32 (~0%)|    -|
+    |    + mult_4bit_12                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85480_proc                    |     -|  2.12|        0|      0.000|         -|        0|     -|        no|        -|   -|     14 (~0%)|     32 (~0%)|    -|
+    |    + mult_4bit_13                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85513_proc                    |     -|  2.12|        0|      0.000|         -|        0|     -|        no|        -|   -|     14 (~0%)|     32 (~0%)|    -|
+    |    + mult_4bit_14                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85546_proc                    |     -|  2.12|        0|      0.000|         -|        0|     -|        no|        -|   -|     14 (~0%)|     32 (~0%)|    -|
+    |    + mult_4bit_15                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85579_proc                    |     -|  2.12|        0|      0.000|         -|        0|     -|        no|        -|   -|     14 (~0%)|     32 (~0%)|    -|
+    |    + mult_4bit_16                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85612_proc                    |     -|  2.12|        0|      0.000|         -|        0|     -|        no|        -|   -|     14 (~0%)|     32 (~0%)|    -|
+    |    + mult_4bit_17                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85645_proc                    |     -|  2.12|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |    + mult_4bit_18                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85678_proc                    |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |    + mult_4bit_19                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85711_proc                    |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |    + mult_4bit_20                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85744_proc                    |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |    + mult_4bit_21                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85777_proc                    |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |    + mult_4bit_22                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85810_proc                    |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |    + mult_4bit_23                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85843_proc                    |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |    + mult_4bit_24                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85876_proc                    |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |    + mult_4bit_25                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85909_proc                    |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |    + mult_4bit_26                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85942_proc                    |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |    + mult_4bit_27                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry85975_proc                    |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |    + mult_4bit_28                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry851008_proc                   |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |    + mult_4bit_29                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry851041_proc                   |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |    + mult_4bit_30                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry851074_proc                   |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |    + mult_4bit_31                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry851107_proc                   |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    |    + mult_4bit_32                                     |     -|  4.96|        0|      0.000|         -|        0|     -|        no|        -|   -|     10 (~0%)|     33 (~0%)|    -|
+    |    + dotProd_Block_entry851140_proc                   |     -|  1.99|        0|      0.000|         -|        0|     -|        no|        -|   -|     15 (~0%)|     34 (~0%)|    -|
+    +-------------------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+---------+----+-------------+-------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AP_FIFO
++---------------+-----------+------------+
+| Interface     | Direction | Data Width |
++---------------+-----------+------------+
+| output_stream | out       | 4          |
+| tokens_stream | out       | 4          |
++---------------+-----------+------------+
+
+* AP_MEMORY
++----------------------+-----------+----------+
+| Port                 | Direction | Bitwidth |
++----------------------+-----------+----------+
+| weightsK_0_address0  | out       | 5        |
+| weightsK_0_q0        | in        | 4        |
+| weightsK_10_address0 | out       | 5        |
+| weightsK_10_q0       | in        | 4        |
+| weightsK_11_address0 | out       | 5        |
+| weightsK_11_q0       | in        | 4        |
+| weightsK_12_address0 | out       | 5        |
+| weightsK_12_q0       | in        | 4        |
+| weightsK_13_address0 | out       | 5        |
+| weightsK_13_q0       | in        | 4        |
+| weightsK_14_address0 | out       | 5        |
+| weightsK_14_q0       | in        | 4        |
+| weightsK_15_address0 | out       | 5        |
+| weightsK_15_q0       | in        | 4        |
+| weightsK_16_address0 | out       | 5        |
+| weightsK_16_q0       | in        | 4        |
+| weightsK_17_address0 | out       | 5        |
+| weightsK_17_q0       | in        | 4        |
+| weightsK_18_address0 | out       | 5        |
+| weightsK_18_q0       | in        | 4        |
+| weightsK_19_address0 | out       | 5        |
+| weightsK_19_q0       | in        | 4        |
+| weightsK_1_address0  | out       | 5        |
+| weightsK_1_q0        | in        | 4        |
+| weightsK_20_address0 | out       | 5        |
+| weightsK_20_q0       | in        | 4        |
+| weightsK_21_address0 | out       | 5        |
+| weightsK_21_q0       | in        | 4        |
+| weightsK_22_address0 | out       | 5        |
+| weightsK_22_q0       | in        | 4        |
+| weightsK_23_address0 | out       | 5        |
+| weightsK_23_q0       | in        | 4        |
+| weightsK_24_address0 | out       | 5        |
+| weightsK_24_q0       | in        | 4        |
+| weightsK_25_address0 | out       | 5        |
+| weightsK_25_q0       | in        | 4        |
+| weightsK_26_address0 | out       | 5        |
+| weightsK_26_q0       | in        | 4        |
+| weightsK_27_address0 | out       | 5        |
+| weightsK_27_q0       | in        | 4        |
+| weightsK_28_address0 | out       | 5        |
+| weightsK_28_q0       | in        | 4        |
+| weightsK_29_address0 | out       | 5        |
+| weightsK_29_q0       | in        | 4        |
+| weightsK_2_address0  | out       | 5        |
+| weightsK_2_q0        | in        | 4        |
+| weightsK_30_address0 | out       | 5        |
+| weightsK_30_q0       | in        | 4        |
+| weightsK_31_address0 | out       | 5        |
+| weightsK_31_q0       | in        | 4        |
+| weightsK_3_address0  | out       | 5        |
+| weightsK_3_q0        | in        | 4        |
+| weightsK_4_address0  | out       | 5        |
+| weightsK_4_q0        | in        | 4        |
+| weightsK_5_address0  | out       | 5        |
+| weightsK_5_q0        | in        | 4        |
+| weightsK_6_address0  | out       | 5        |
+| weightsK_6_q0        | in        | 4        |
+| weightsK_7_address0  | out       | 5        |
+| weightsK_7_q0        | in        | 4        |
+| weightsK_8_address0  | out       | 5        |
+| weightsK_8_q0        | in        | 4        |
+| weightsK_9_address0  | out       | 5        |
+| weightsK_9_q0        | in        | 4        |
+| weightsQ_0_address0  | out       | 5        |
+| weightsQ_0_q0        | in        | 4        |
+| weightsQ_10_address0 | out       | 5        |
+| weightsQ_10_q0       | in        | 4        |
+| weightsQ_11_address0 | out       | 5        |
+| weightsQ_11_q0       | in        | 4        |
+| weightsQ_12_address0 | out       | 5        |
+| weightsQ_12_q0       | in        | 4        |
+| weightsQ_13_address0 | out       | 5        |
+| weightsQ_13_q0       | in        | 4        |
+| weightsQ_14_address0 | out       | 5        |
+| weightsQ_14_q0       | in        | 4        |
+| weightsQ_15_address0 | out       | 5        |
+| weightsQ_15_q0       | in        | 4        |
+| weightsQ_16_address0 | out       | 5        |
+| weightsQ_16_q0       | in        | 4        |
+| weightsQ_17_address0 | out       | 5        |
+| weightsQ_17_q0       | in        | 4        |
+| weightsQ_18_address0 | out       | 5        |
+| weightsQ_18_q0       | in        | 4        |
+| weightsQ_19_address0 | out       | 5        |
+| weightsQ_19_q0       | in        | 4        |
+| weightsQ_1_address0  | out       | 5        |
+| weightsQ_1_q0        | in        | 4        |
+| weightsQ_20_address0 | out       | 5        |
+| weightsQ_20_q0       | in        | 4        |
+| weightsQ_21_address0 | out       | 5        |
+| weightsQ_21_q0       | in        | 4        |
+| weightsQ_22_address0 | out       | 5        |
+| weightsQ_22_q0       | in        | 4        |
+| weightsQ_23_address0 | out       | 5        |
+| weightsQ_23_q0       | in        | 4        |
+| weightsQ_24_address0 | out       | 5        |
+| weightsQ_24_q0       | in        | 4        |
+| weightsQ_25_address0 | out       | 5        |
+| weightsQ_25_q0       | in        | 4        |
+| weightsQ_26_address0 | out       | 5        |
+| weightsQ_26_q0       | in        | 4        |
+| weightsQ_27_address0 | out       | 5        |
+| weightsQ_27_q0       | in        | 4        |
+| weightsQ_28_address0 | out       | 5        |
+| weightsQ_28_q0       | in        | 4        |
+| weightsQ_29_address0 | out       | 5        |
+| weightsQ_29_q0       | in        | 4        |
+| weightsQ_2_address0  | out       | 5        |
+| weightsQ_2_q0        | in        | 4        |
+| weightsQ_30_address0 | out       | 5        |
+| weightsQ_30_q0       | in        | 4        |
+| weightsQ_31_address0 | out       | 5        |
+| weightsQ_31_q0       | in        | 4        |
+| weightsQ_3_address0  | out       | 5        |
+| weightsQ_3_q0        | in        | 4        |
+| weightsQ_4_address0  | out       | 5        |
+| weightsQ_4_q0        | in        | 4        |
+| weightsQ_5_address0  | out       | 5        |
+| weightsQ_5_q0        | in        | 4        |
+| weightsQ_6_address0  | out       | 5        |
+| weightsQ_6_q0        | in        | 4        |
+| weightsQ_7_address0  | out       | 5        |
+| weightsQ_7_q0        | in        | 4        |
+| weightsQ_8_address0  | out       | 5        |
+| weightsQ_8_q0        | in        | 4        |
+| weightsQ_9_address0  | out       | 5        |
+| weightsQ_9_q0        | in        | 4        |
+| weightsV_0_address0  | out       | 5        |
+| weightsV_0_q0        | in        | 4        |
+| weightsV_10_address0 | out       | 5        |
+| weightsV_10_q0       | in        | 4        |
+| weightsV_11_address0 | out       | 5        |
+| weightsV_11_q0       | in        | 4        |
+| weightsV_12_address0 | out       | 5        |
+| weightsV_12_q0       | in        | 4        |
+| weightsV_13_address0 | out       | 5        |
+| weightsV_13_q0       | in        | 4        |
+| weightsV_14_address0 | out       | 5        |
+| weightsV_14_q0       | in        | 4        |
+| weightsV_15_address0 | out       | 5        |
+| weightsV_15_q0       | in        | 4        |
+| weightsV_16_address0 | out       | 5        |
+| weightsV_16_q0       | in        | 4        |
+| weightsV_17_address0 | out       | 5        |
+| weightsV_17_q0       | in        | 4        |
+| weightsV_18_address0 | out       | 5        |
+| weightsV_18_q0       | in        | 4        |
+| weightsV_19_address0 | out       | 5        |
+| weightsV_19_q0       | in        | 4        |
+| weightsV_1_address0  | out       | 5        |
+| weightsV_1_q0        | in        | 4        |
+| weightsV_20_address0 | out       | 5        |
+| weightsV_20_q0       | in        | 4        |
+| weightsV_21_address0 | out       | 5        |
+| weightsV_21_q0       | in        | 4        |
+| weightsV_22_address0 | out       | 5        |
+| weightsV_22_q0       | in        | 4        |
+| weightsV_23_address0 | out       | 5        |
+| weightsV_23_q0       | in        | 4        |
+| weightsV_24_address0 | out       | 5        |
+| weightsV_24_q0       | in        | 4        |
+| weightsV_25_address0 | out       | 5        |
+| weightsV_25_q0       | in        | 4        |
+| weightsV_26_address0 | out       | 5        |
+| weightsV_26_q0       | in        | 4        |
+| weightsV_27_address0 | out       | 5        |
+| weightsV_27_q0       | in        | 4        |
+| weightsV_28_address0 | out       | 5        |
+| weightsV_28_q0       | in        | 4        |
+| weightsV_29_address0 | out       | 5        |
+| weightsV_29_q0       | in        | 4        |
+| weightsV_2_address0  | out       | 5        |
+| weightsV_2_q0        | in        | 4        |
+| weightsV_30_address0 | out       | 5        |
+| weightsV_30_q0       | in        | 4        |
+| weightsV_31_address0 | out       | 5        |
+| weightsV_31_q0       | in        | 4        |
+| weightsV_3_address0  | out       | 5        |
+| weightsV_3_q0        | in        | 4        |
+| weightsV_4_address0  | out       | 5        |
+| weightsV_4_q0        | in        | 4        |
+| weightsV_5_address0  | out       | 5        |
+| weightsV_5_q0        | in        | 4        |
+| weightsV_6_address0  | out       | 5        |
+| weightsV_6_q0        | in        | 4        |
+| weightsV_7_address0  | out       | 5        |
+| weightsV_7_q0        | in        | 4        |
+| weightsV_8_address0  | out       | 5        |
+| weightsV_8_q0        | in        | 4        |
+| weightsV_9_address0  | out       | 5        |
+| weightsV_9_q0        | in        | 4        |
++----------------------+-----------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++---------------+-----------+------------------------+
+| Argument      | Direction | Datatype               |
++---------------+-----------+------------------------+
+| tokens_stream | in        | stream<ap_uint<4>, 0>& |
+| weightsQ      | in        | ap_uint<4>*            |
+| weightsK      | in        | ap_uint<4>*            |
+| weightsV      | in        | ap_uint<4>*            |
+| output_stream | out       | stream<ap_uint<4>, 0>& |
++---------------+-----------+------------------------+
+
+* SW-to-HW Mapping
++---------------+----------------------+-----------+----------+
+| Argument      | HW Interface         | HW Type   | HW Usage |
++---------------+----------------------+-----------+----------+
+| tokens_stream | tokens_stream        | interface |          |
+| weightsQ      | weightsQ_0_address0  | port      | offset   |
+| weightsQ      | weightsQ_0_ce0       | port      |          |
+| weightsQ      | weightsQ_0_q0        | port      |          |
+| weightsQ      | weightsQ_1_address0  | port      | offset   |
+| weightsQ      | weightsQ_1_ce0       | port      |          |
+| weightsQ      | weightsQ_1_q0        | port      |          |
+| weightsQ      | weightsQ_2_address0  | port      | offset   |
+| weightsQ      | weightsQ_2_ce0       | port      |          |
+| weightsQ      | weightsQ_2_q0        | port      |          |
+| weightsQ      | weightsQ_3_address0  | port      | offset   |
+| weightsQ      | weightsQ_3_ce0       | port      |          |
+| weightsQ      | weightsQ_3_q0        | port      |          |
+| weightsQ      | weightsQ_4_address0  | port      | offset   |
+| weightsQ      | weightsQ_4_ce0       | port      |          |
+| weightsQ      | weightsQ_4_q0        | port      |          |
+| weightsQ      | weightsQ_5_address0  | port      | offset   |
+| weightsQ      | weightsQ_5_ce0       | port      |          |
+| weightsQ      | weightsQ_5_q0        | port      |          |
+| weightsQ      | weightsQ_6_address0  | port      | offset   |
+| weightsQ      | weightsQ_6_ce0       | port      |          |
+| weightsQ      | weightsQ_6_q0        | port      |          |
+| weightsQ      | weightsQ_7_address0  | port      | offset   |
+| weightsQ      | weightsQ_7_ce0       | port      |          |
+| weightsQ      | weightsQ_7_q0        | port      |          |
+| weightsQ      | weightsQ_8_address0  | port      | offset   |
+| weightsQ      | weightsQ_8_ce0       | port      |          |
+| weightsQ      | weightsQ_8_q0        | port      |          |
+| weightsQ      | weightsQ_9_address0  | port      | offset   |
+| weightsQ      | weightsQ_9_ce0       | port      |          |
+| weightsQ      | weightsQ_9_q0        | port      |          |
+| weightsQ      | weightsQ_10_address0 | port      | offset   |
+| weightsQ      | weightsQ_10_ce0      | port      |          |
+| weightsQ      | weightsQ_10_q0       | port      |          |
+| weightsQ      | weightsQ_11_address0 | port      | offset   |
+| weightsQ      | weightsQ_11_ce0      | port      |          |
+| weightsQ      | weightsQ_11_q0       | port      |          |
+| weightsQ      | weightsQ_12_address0 | port      | offset   |
+| weightsQ      | weightsQ_12_ce0      | port      |          |
+| weightsQ      | weightsQ_12_q0       | port      |          |
+| weightsQ      | weightsQ_13_address0 | port      | offset   |
+| weightsQ      | weightsQ_13_ce0      | port      |          |
+| weightsQ      | weightsQ_13_q0       | port      |          |
+| weightsQ      | weightsQ_14_address0 | port      | offset   |
+| weightsQ      | weightsQ_14_ce0      | port      |          |
+| weightsQ      | weightsQ_14_q0       | port      |          |
+| weightsQ      | weightsQ_15_address0 | port      | offset   |
+| weightsQ      | weightsQ_15_ce0      | port      |          |
+| weightsQ      | weightsQ_15_q0       | port      |          |
+| weightsQ      | weightsQ_16_address0 | port      | offset   |
+| weightsQ      | weightsQ_16_ce0      | port      |          |
+| weightsQ      | weightsQ_16_q0       | port      |          |
+| weightsQ      | weightsQ_17_address0 | port      | offset   |
+| weightsQ      | weightsQ_17_ce0      | port      |          |
+| weightsQ      | weightsQ_17_q0       | port      |          |
+| weightsQ      | weightsQ_18_address0 | port      | offset   |
+| weightsQ      | weightsQ_18_ce0      | port      |          |
+| weightsQ      | weightsQ_18_q0       | port      |          |
+| weightsQ      | weightsQ_19_address0 | port      | offset   |
+| weightsQ      | weightsQ_19_ce0      | port      |          |
+| weightsQ      | weightsQ_19_q0       | port      |          |
+| weightsQ      | weightsQ_20_address0 | port      | offset   |
+| weightsQ      | weightsQ_20_ce0      | port      |          |
+| weightsQ      | weightsQ_20_q0       | port      |          |
+| weightsQ      | weightsQ_21_address0 | port      | offset   |
+| weightsQ      | weightsQ_21_ce0      | port      |          |
+| weightsQ      | weightsQ_21_q0       | port      |          |
+| weightsQ      | weightsQ_22_address0 | port      | offset   |
+| weightsQ      | weightsQ_22_ce0      | port      |          |
+| weightsQ      | weightsQ_22_q0       | port      |          |
+| weightsQ      | weightsQ_23_address0 | port      | offset   |
+| weightsQ      | weightsQ_23_ce0      | port      |          |
+| weightsQ      | weightsQ_23_q0       | port      |          |
+| weightsQ      | weightsQ_24_address0 | port      | offset   |
+| weightsQ      | weightsQ_24_ce0      | port      |          |
+| weightsQ      | weightsQ_24_q0       | port      |          |
+| weightsQ      | weightsQ_25_address0 | port      | offset   |
+| weightsQ      | weightsQ_25_ce0      | port      |          |
+| weightsQ      | weightsQ_25_q0       | port      |          |
+| weightsQ      | weightsQ_26_address0 | port      | offset   |
+| weightsQ      | weightsQ_26_ce0      | port      |          |
+| weightsQ      | weightsQ_26_q0       | port      |          |
+| weightsQ      | weightsQ_27_address0 | port      | offset   |
+| weightsQ      | weightsQ_27_ce0      | port      |          |
+| weightsQ      | weightsQ_27_q0       | port      |          |
+| weightsQ      | weightsQ_28_address0 | port      | offset   |
+| weightsQ      | weightsQ_28_ce0      | port      |          |
+| weightsQ      | weightsQ_28_q0       | port      |          |
+| weightsQ      | weightsQ_29_address0 | port      | offset   |
+| weightsQ      | weightsQ_29_ce0      | port      |          |
+| weightsQ      | weightsQ_29_q0       | port      |          |
+| weightsQ      | weightsQ_30_address0 | port      | offset   |
+| weightsQ      | weightsQ_30_ce0      | port      |          |
+| weightsQ      | weightsQ_30_q0       | port      |          |
+| weightsQ      | weightsQ_31_address0 | port      | offset   |
+| weightsQ      | weightsQ_31_ce0      | port      |          |
+| weightsQ      | weightsQ_31_q0       | port      |          |
+| weightsK      | weightsK_0_address0  | port      | offset   |
+| weightsK      | weightsK_0_ce0       | port      |          |
+| weightsK      | weightsK_0_q0        | port      |          |
+| weightsK      | weightsK_1_address0  | port      | offset   |
+| weightsK      | weightsK_1_ce0       | port      |          |
+| weightsK      | weightsK_1_q0        | port      |          |
+| weightsK      | weightsK_2_address0  | port      | offset   |
+| weightsK      | weightsK_2_ce0       | port      |          |
+| weightsK      | weightsK_2_q0        | port      |          |
+| weightsK      | weightsK_3_address0  | port      | offset   |
+| weightsK      | weightsK_3_ce0       | port      |          |
+| weightsK      | weightsK_3_q0        | port      |          |
+| weightsK      | weightsK_4_address0  | port      | offset   |
+| weightsK      | weightsK_4_ce0       | port      |          |
+| weightsK      | weightsK_4_q0        | port      |          |
+| weightsK      | weightsK_5_address0  | port      | offset   |
+| weightsK      | weightsK_5_ce0       | port      |          |
+| weightsK      | weightsK_5_q0        | port      |          |
+| weightsK      | weightsK_6_address0  | port      | offset   |
+| weightsK      | weightsK_6_ce0       | port      |          |
+| weightsK      | weightsK_6_q0        | port      |          |
+| weightsK      | weightsK_7_address0  | port      | offset   |
+| weightsK      | weightsK_7_ce0       | port      |          |
+| weightsK      | weightsK_7_q0        | port      |          |
+| weightsK      | weightsK_8_address0  | port      | offset   |
+| weightsK      | weightsK_8_ce0       | port      |          |
+| weightsK      | weightsK_8_q0        | port      |          |
+| weightsK      | weightsK_9_address0  | port      | offset   |
+| weightsK      | weightsK_9_ce0       | port      |          |
+| weightsK      | weightsK_9_q0        | port      |          |
+| weightsK      | weightsK_10_address0 | port      | offset   |
+| weightsK      | weightsK_10_ce0      | port      |          |
+| weightsK      | weightsK_10_q0       | port      |          |
+| weightsK      | weightsK_11_address0 | port      | offset   |
+| weightsK      | weightsK_11_ce0      | port      |          |
+| weightsK      | weightsK_11_q0       | port      |          |
+| weightsK      | weightsK_12_address0 | port      | offset   |
+| weightsK      | weightsK_12_ce0      | port      |          |
+| weightsK      | weightsK_12_q0       | port      |          |
+| weightsK      | weightsK_13_address0 | port      | offset   |
+| weightsK      | weightsK_13_ce0      | port      |          |
+| weightsK      | weightsK_13_q0       | port      |          |
+| weightsK      | weightsK_14_address0 | port      | offset   |
+| weightsK      | weightsK_14_ce0      | port      |          |
+| weightsK      | weightsK_14_q0       | port      |          |
+| weightsK      | weightsK_15_address0 | port      | offset   |
+| weightsK      | weightsK_15_ce0      | port      |          |
+| weightsK      | weightsK_15_q0       | port      |          |
+| weightsK      | weightsK_16_address0 | port      | offset   |
+| weightsK      | weightsK_16_ce0      | port      |          |
+| weightsK      | weightsK_16_q0       | port      |          |
+| weightsK      | weightsK_17_address0 | port      | offset   |
+| weightsK      | weightsK_17_ce0      | port      |          |
+| weightsK      | weightsK_17_q0       | port      |          |
+| weightsK      | weightsK_18_address0 | port      | offset   |
+| weightsK      | weightsK_18_ce0      | port      |          |
+| weightsK      | weightsK_18_q0       | port      |          |
+| weightsK      | weightsK_19_address0 | port      | offset   |
+| weightsK      | weightsK_19_ce0      | port      |          |
+| weightsK      | weightsK_19_q0       | port      |          |
+| weightsK      | weightsK_20_address0 | port      | offset   |
+| weightsK      | weightsK_20_ce0      | port      |          |
+| weightsK      | weightsK_20_q0       | port      |          |
+| weightsK      | weightsK_21_address0 | port      | offset   |
+| weightsK      | weightsK_21_ce0      | port      |          |
+| weightsK      | weightsK_21_q0       | port      |          |
+| weightsK      | weightsK_22_address0 | port      | offset   |
+| weightsK      | weightsK_22_ce0      | port      |          |
+| weightsK      | weightsK_22_q0       | port      |          |
+| weightsK      | weightsK_23_address0 | port      | offset   |
+| weightsK      | weightsK_23_ce0      | port      |          |
+| weightsK      | weightsK_23_q0       | port      |          |
+| weightsK      | weightsK_24_address0 | port      | offset   |
+| weightsK      | weightsK_24_ce0      | port      |          |
+| weightsK      | weightsK_24_q0       | port      |          |
+| weightsK      | weightsK_25_address0 | port      | offset   |
+| weightsK      | weightsK_25_ce0      | port      |          |
+| weightsK      | weightsK_25_q0       | port      |          |
+| weightsK      | weightsK_26_address0 | port      | offset   |
+| weightsK      | weightsK_26_ce0      | port      |          |
+| weightsK      | weightsK_26_q0       | port      |          |
+| weightsK      | weightsK_27_address0 | port      | offset   |
+| weightsK      | weightsK_27_ce0      | port      |          |
+| weightsK      | weightsK_27_q0       | port      |          |
+| weightsK      | weightsK_28_address0 | port      | offset   |
+| weightsK      | weightsK_28_ce0      | port      |          |
+| weightsK      | weightsK_28_q0       | port      |          |
+| weightsK      | weightsK_29_address0 | port      | offset   |
+| weightsK      | weightsK_29_ce0      | port      |          |
+| weightsK      | weightsK_29_q0       | port      |          |
+| weightsK      | weightsK_30_address0 | port      | offset   |
+| weightsK      | weightsK_30_ce0      | port      |          |
+| weightsK      | weightsK_30_q0       | port      |          |
+| weightsK      | weightsK_31_address0 | port      | offset   |
+| weightsK      | weightsK_31_ce0      | port      |          |
+| weightsK      | weightsK_31_q0       | port      |          |
+| weightsV      | weightsV_0_address0  | port      | offset   |
+| weightsV      | weightsV_0_ce0       | port      |          |
+| weightsV      | weightsV_0_q0        | port      |          |
+| weightsV      | weightsV_1_address0  | port      | offset   |
+| weightsV      | weightsV_1_ce0       | port      |          |
+| weightsV      | weightsV_1_q0        | port      |          |
+| weightsV      | weightsV_2_address0  | port      | offset   |
+| weightsV      | weightsV_2_ce0       | port      |          |
+| weightsV      | weightsV_2_q0        | port      |          |
+| weightsV      | weightsV_3_address0  | port      | offset   |
+| weightsV      | weightsV_3_ce0       | port      |          |
+| weightsV      | weightsV_3_q0        | port      |          |
+| weightsV      | weightsV_4_address0  | port      | offset   |
+| weightsV      | weightsV_4_ce0       | port      |          |
+| weightsV      | weightsV_4_q0        | port      |          |
+| weightsV      | weightsV_5_address0  | port      | offset   |
+| weightsV      | weightsV_5_ce0       | port      |          |
+| weightsV      | weightsV_5_q0        | port      |          |
+| weightsV      | weightsV_6_address0  | port      | offset   |
+| weightsV      | weightsV_6_ce0       | port      |          |
+| weightsV      | weightsV_6_q0        | port      |          |
+| weightsV      | weightsV_7_address0  | port      | offset   |
+| weightsV      | weightsV_7_ce0       | port      |          |
+| weightsV      | weightsV_7_q0        | port      |          |
+| weightsV      | weightsV_8_address0  | port      | offset   |
+| weightsV      | weightsV_8_ce0       | port      |          |
+| weightsV      | weightsV_8_q0        | port      |          |
+| weightsV      | weightsV_9_address0  | port      | offset   |
+| weightsV      | weightsV_9_ce0       | port      |          |
+| weightsV      | weightsV_9_q0        | port      |          |
+| weightsV      | weightsV_10_address0 | port      | offset   |
+| weightsV      | weightsV_10_ce0      | port      |          |
+| weightsV      | weightsV_10_q0       | port      |          |
+| weightsV      | weightsV_11_address0 | port      | offset   |
+| weightsV      | weightsV_11_ce0      | port      |          |
+| weightsV      | weightsV_11_q0       | port      |          |
+| weightsV      | weightsV_12_address0 | port      | offset   |
+| weightsV      | weightsV_12_ce0      | port      |          |
+| weightsV      | weightsV_12_q0       | port      |          |
+| weightsV      | weightsV_13_address0 | port      | offset   |
+| weightsV      | weightsV_13_ce0      | port      |          |
+| weightsV      | weightsV_13_q0       | port      |          |
+| weightsV      | weightsV_14_address0 | port      | offset   |
+| weightsV      | weightsV_14_ce0      | port      |          |
+| weightsV      | weightsV_14_q0       | port      |          |
+| weightsV      | weightsV_15_address0 | port      | offset   |
+| weightsV      | weightsV_15_ce0      | port      |          |
+| weightsV      | weightsV_15_q0       | port      |          |
+| weightsV      | weightsV_16_address0 | port      | offset   |
+| weightsV      | weightsV_16_ce0      | port      |          |
+| weightsV      | weightsV_16_q0       | port      |          |
+| weightsV      | weightsV_17_address0 | port      | offset   |
+| weightsV      | weightsV_17_ce0      | port      |          |
+| weightsV      | weightsV_17_q0       | port      |          |
+| weightsV      | weightsV_18_address0 | port      | offset   |
+| weightsV      | weightsV_18_ce0      | port      |          |
+| weightsV      | weightsV_18_q0       | port      |          |
+| weightsV      | weightsV_19_address0 | port      | offset   |
+| weightsV      | weightsV_19_ce0      | port      |          |
+| weightsV      | weightsV_19_q0       | port      |          |
+| weightsV      | weightsV_20_address0 | port      | offset   |
+| weightsV      | weightsV_20_ce0      | port      |          |
+| weightsV      | weightsV_20_q0       | port      |          |
+| weightsV      | weightsV_21_address0 | port      | offset   |
+| weightsV      | weightsV_21_ce0      | port      |          |
+| weightsV      | weightsV_21_q0       | port      |          |
+| weightsV      | weightsV_22_address0 | port      | offset   |
+| weightsV      | weightsV_22_ce0      | port      |          |
+| weightsV      | weightsV_22_q0       | port      |          |
+| weightsV      | weightsV_23_address0 | port      | offset   |
+| weightsV      | weightsV_23_ce0      | port      |          |
+| weightsV      | weightsV_23_q0       | port      |          |
+| weightsV      | weightsV_24_address0 | port      | offset   |
+| weightsV      | weightsV_24_ce0      | port      |          |
+| weightsV      | weightsV_24_q0       | port      |          |
+| weightsV      | weightsV_25_address0 | port      | offset   |
+| weightsV      | weightsV_25_ce0      | port      |          |
+| weightsV      | weightsV_25_q0       | port      |          |
+| weightsV      | weightsV_26_address0 | port      | offset   |
+| weightsV      | weightsV_26_ce0      | port      |          |
+| weightsV      | weightsV_26_q0       | port      |          |
+| weightsV      | weightsV_27_address0 | port      | offset   |
+| weightsV      | weightsV_27_ce0      | port      |          |
+| weightsV      | weightsV_27_q0       | port      |          |
+| weightsV      | weightsV_28_address0 | port      | offset   |
+| weightsV      | weightsV_28_ce0      | port      |          |
+| weightsV      | weightsV_28_q0       | port      |          |
+| weightsV      | weightsV_29_address0 | port      | offset   |
+| weightsV      | weightsV_29_ce0      | port      |          |
+| weightsV      | weightsV_29_q0       | port      |          |
+| weightsV      | weightsV_30_address0 | port      | offset   |
+| weightsV      | weightsV_30_ce0      | port      |          |
+| weightsV      | weightsV_30_q0       | port      |          |
+| weightsV      | weightsV_31_address0 | port      | offset   |
+| weightsV      | weightsV_31_ce0      | port      |          |
+| weightsV      | weightsV_31_q0       | port      |          |
+| output_stream | output_stream        | interface |          |
++---------------+----------------------+-----------+----------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+ Note: All burst requests might be further partitioned into multiple requests during RTL generation based on max_read_burst_length or max_write_burst_length settings.
+
+
+================================================================
+== Bind Op Report
+================================================================
++-------------------------------------------------------+-----+--------+--------------------------------+------+--------+---------+
+| Name                                                  | DSP | Pragma | Variable                       | Op   | Impl   | Latency |
++-------------------------------------------------------+-----+--------+--------------------------------+------+--------+---------+
+| + attention                                           | 0   |        |                                |      |        |         |
+|   add_ln52_fu_6146_p2                                 | -   |        | add_ln52                       | add  | fabric | 0       |
+|   add_ln57_fu_6207_p2                                 | -   |        | add_ln57                       | add  | fabric | 0       |
+|   add_ln13_fu_6230_p2                                 | -   |        | add_ln13                       | add  | fabric | 0       |
+|   add_ln15_fu_6278_p2                                 | -   |        | add_ln15                       | add  | fabric | 0       |
+|  + attention_Pipeline_VITIS_LOOP_35_1_VITIS_LOOP_36_2 | 0   |        |                                |      |        |         |
+|    add_ln35_fu_667_p2                                 | -   |        | add_ln35                       | add  | fabric | 0       |
+|    add_ln35_1_fu_690_p2                               | -   |        | add_ln35_1                     | add  | fabric | 0       |
+|    add_ln35_2_fu_696_p2                               | -   |        | add_ln35_2                     | add  | fabric | 0       |
+|    add_ln36_fu_726_p2                                 | -   |        | add_ln36                       | add  | fabric | 0       |
+|  + attention_Pipeline_VITIS_LOOP_51_3_VITIS_LOOP_52_4 | 0   |        |                                |      |        |         |
+|    add_ln51_fu_667_p2                                 | -   |        | add_ln51                       | add  | fabric | 0       |
+|    add_ln51_1_fu_690_p2                               | -   |        | add_ln51_1                     | add  | fabric | 0       |
+|    add_ln51_2_fu_696_p2                               | -   |        | add_ln51_2                     | add  | fabric | 0       |
+|    add_ln52_fu_726_p2                                 | -   |        | add_ln52                       | add  | fabric | 0       |
+|  + project                                            | 0   |        |                                |      |        |         |
+|    add_ln13_fu_1301_p2                                | -   |        | add_ln13                       | add  | fabric | 0       |
+|    max_result_fu_1312_p2                              | -   |        | max_result                     | sub  | fabric | 0       |
+|    sub_ln43_fu_1371_p2                                | -   |        | sub_ln43                       | sub  | fabric | 0       |
+|    sub_ln43_1_fu_1395_p2                              | -   |        | sub_ln43_1                     | sub  | fabric | 0       |
+|    sub_ln43_2_fu_1417_p2                              | -   |        | sub_ln43_2                     | sub  | fabric | 0       |
+|    sub_ln43_3_fu_1439_p2                              | -   |        | sub_ln43_3                     | sub  | fabric | 0       |
+|    sub_ln43_4_fu_1461_p2                              | -   |        | sub_ln43_4                     | sub  | fabric | 0       |
+|    sub_ln43_5_fu_1483_p2                              | -   |        | sub_ln43_5                     | sub  | fabric | 0       |
+|    sub_ln43_6_fu_1505_p2                              | -   |        | sub_ln43_6                     | sub  | fabric | 0       |
+|    sub_ln43_7_fu_1527_p2                              | -   |        | sub_ln43_7                     | sub  | fabric | 0       |
+|    sub_ln43_8_fu_1549_p2                              | -   |        | sub_ln43_8                     | sub  | fabric | 0       |
+|    sub_ln43_9_fu_1571_p2                              | -   |        | sub_ln43_9                     | sub  | fabric | 0       |
+|    sub_ln43_10_fu_1593_p2                             | -   |        | sub_ln43_10                    | sub  | fabric | 0       |
+|    sub_ln43_11_fu_1615_p2                             | -   |        | sub_ln43_11                    | sub  | fabric | 0       |
+|    sub_ln43_12_fu_1637_p2                             | -   |        | sub_ln43_12                    | sub  | fabric | 0       |
+|    sub_ln43_13_fu_1659_p2                             | -   |        | sub_ln43_13                    | sub  | fabric | 0       |
+|    sub_ln43_14_fu_1681_p2                             | -   |        | sub_ln43_14                    | sub  | fabric | 0       |
+|    sub_ln43_15_fu_1703_p2                             | -   |        | sub_ln43_15                    | sub  | fabric | 0       |
+|    sub_ln43_16_fu_1725_p2                             | -   |        | sub_ln43_16                    | sub  | fabric | 0       |
+|    sub_ln43_17_fu_1747_p2                             | -   |        | sub_ln43_17                    | sub  | fabric | 0       |
+|    sub_ln43_18_fu_1769_p2                             | -   |        | sub_ln43_18                    | sub  | fabric | 0       |
+|    sub_ln43_19_fu_1791_p2                             | -   |        | sub_ln43_19                    | sub  | fabric | 0       |
+|    sub_ln43_20_fu_1813_p2                             | -   |        | sub_ln43_20                    | sub  | fabric | 0       |
+|    sub_ln43_21_fu_1835_p2                             | -   |        | sub_ln43_21                    | sub  | fabric | 0       |
+|    sub_ln43_22_fu_1857_p2                             | -   |        | sub_ln43_22                    | sub  | fabric | 0       |
+|    sub_ln43_23_fu_1879_p2                             | -   |        | sub_ln43_23                    | sub  | fabric | 0       |
+|    sub_ln43_24_fu_1901_p2                             | -   |        | sub_ln43_24                    | sub  | fabric | 0       |
+|    sub_ln43_25_fu_1923_p2                             | -   |        | sub_ln43_25                    | sub  | fabric | 0       |
+|    sub_ln43_26_fu_1945_p2                             | -   |        | sub_ln43_26                    | sub  | fabric | 0       |
+|    sub_ln43_27_fu_1967_p2                             | -   |        | sub_ln43_27                    | sub  | fabric | 0       |
+|    sub_ln43_28_fu_1989_p2                             | -   |        | sub_ln43_28                    | sub  | fabric | 0       |
+|    sub_ln43_29_fu_2011_p2                             | -   |        | sub_ln43_29                    | sub  | fabric | 0       |
+|    sub_ln43_30_fu_2033_p2                             | -   |        | sub_ln43_30                    | sub  | fabric | 0       |
+|    sub_ln43_31_fu_2042_p2                             | -   |        | sub_ln43_31                    | sub  | fabric | 0       |
+|   + project_Pipeline_VITIS_LOOP_33_2                  | 0   |        |                                |      |        |         |
+|     shift_amount_2_fu_72_p2                           | -   |        | shift_amount_2                 | add  | fabric | 0       |
+|   + dotProd_64                                        | 0   |        |                                |      |        |         |
+|     ref_tmp1_out_tmp_channel_U                        | -   |        | ref_tmp1_out_tmp_channel       | fifo | srl    | 0       |
+|     ref_tmp1_load_cast_loc_channel_U                  | -   |        | ref_tmp1_load_cast_loc_channel | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1140_channel_U                    | -   |        | ref_tmp1_out_tmp1140_channel   | fifo | srl    | 0       |
+|     add_ln22_cast_loc_channel_U                       | -   |        | add_ln22_cast_loc_channel      | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1141_channel_U                    | -   |        | ref_tmp1_out_tmp1141_channel   | fifo | srl    | 0       |
+|     add_ln22_1_loc_channel_U                          | -   |        | add_ln22_1_loc_channel         | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1142_channel_U                    | -   |        | ref_tmp1_out_tmp1142_channel   | fifo | srl    | 0       |
+|     add_ln22_2_cast_loc_channel_U                     | -   |        | add_ln22_2_cast_loc_channel    | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1143_channel_U                    | -   |        | ref_tmp1_out_tmp1143_channel   | fifo | srl    | 0       |
+|     add_ln22_3_loc_channel_U                          | -   |        | add_ln22_3_loc_channel         | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1144_channel_U                    | -   |        | ref_tmp1_out_tmp1144_channel   | fifo | srl    | 0       |
+|     add_ln22_4_loc_channel_U                          | -   |        | add_ln22_4_loc_channel         | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1145_channel_U                    | -   |        | ref_tmp1_out_tmp1145_channel   | fifo | srl    | 0       |
+|     add_ln22_5_loc_channel_U                          | -   |        | add_ln22_5_loc_channel         | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1146_channel_U                    | -   |        | ref_tmp1_out_tmp1146_channel   | fifo | srl    | 0       |
+|     add_ln22_6_cast_loc_channel_U                     | -   |        | add_ln22_6_cast_loc_channel    | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1147_channel_U                    | -   |        | ref_tmp1_out_tmp1147_channel   | fifo | srl    | 0       |
+|     add_ln22_7_loc_channel_U                          | -   |        | add_ln22_7_loc_channel         | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1148_channel_U                    | -   |        | ref_tmp1_out_tmp1148_channel   | fifo | srl    | 0       |
+|     add_ln22_8_loc_channel_U                          | -   |        | add_ln22_8_loc_channel         | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1149_channel_U                    | -   |        | ref_tmp1_out_tmp1149_channel   | fifo | srl    | 0       |
+|     add_ln22_9_loc_channel_U                          | -   |        | add_ln22_9_loc_channel         | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1150_channel_U                    | -   |        | ref_tmp1_out_tmp1150_channel   | fifo | srl    | 0       |
+|     add_ln22_10_loc_channel_U                         | -   |        | add_ln22_10_loc_channel        | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1151_channel_U                    | -   |        | ref_tmp1_out_tmp1151_channel   | fifo | srl    | 0       |
+|     add_ln22_11_loc_channel_U                         | -   |        | add_ln22_11_loc_channel        | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1152_channel_U                    | -   |        | ref_tmp1_out_tmp1152_channel   | fifo | srl    | 0       |
+|     add_ln22_12_loc_channel_U                         | -   |        | add_ln22_12_loc_channel        | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1153_channel_U                    | -   |        | ref_tmp1_out_tmp1153_channel   | fifo | srl    | 0       |
+|     add_ln22_13_loc_channel_U                         | -   |        | add_ln22_13_loc_channel        | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1154_channel_U                    | -   |        | ref_tmp1_out_tmp1154_channel   | fifo | srl    | 0       |
+|     add_ln22_14_cast_loc_channel_U                    | -   |        | add_ln22_14_cast_loc_channel   | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1155_channel_U                    | -   |        | ref_tmp1_out_tmp1155_channel   | fifo | srl    | 0       |
+|     add_ln22_15_loc_channel_U                         | -   |        | add_ln22_15_loc_channel        | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1156_channel_U                    | -   |        | ref_tmp1_out_tmp1156_channel   | fifo | srl    | 0       |
+|     add_ln22_16_loc_channel_U                         | -   |        | add_ln22_16_loc_channel        | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1157_channel_U                    | -   |        | ref_tmp1_out_tmp1157_channel   | fifo | srl    | 0       |
+|     add_ln22_17_loc_channel_U                         | -   |        | add_ln22_17_loc_channel        | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1158_channel_U                    | -   |        | ref_tmp1_out_tmp1158_channel   | fifo | srl    | 0       |
+|     add_ln22_18_loc_channel_U                         | -   |        | add_ln22_18_loc_channel        | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1159_channel_U                    | -   |        | ref_tmp1_out_tmp1159_channel   | fifo | srl    | 0       |
+|     add_ln22_19_loc_channel_U                         | -   |        | add_ln22_19_loc_channel        | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1160_channel_U                    | -   |        | ref_tmp1_out_tmp1160_channel   | fifo | srl    | 0       |
+|     add_ln22_20_loc_channel_U                         | -   |        | add_ln22_20_loc_channel        | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1161_channel_U                    | -   |        | ref_tmp1_out_tmp1161_channel   | fifo | srl    | 0       |
+|     add_ln22_21_loc_channel_U                         | -   |        | add_ln22_21_loc_channel        | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1162_channel_U                    | -   |        | ref_tmp1_out_tmp1162_channel   | fifo | srl    | 0       |
+|     add_ln22_22_loc_channel_U                         | -   |        | add_ln22_22_loc_channel        | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1163_channel_U                    | -   |        | ref_tmp1_out_tmp1163_channel   | fifo | srl    | 0       |
+|     add_ln22_23_loc_channel_U                         | -   |        | add_ln22_23_loc_channel        | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1164_channel_U                    | -   |        | ref_tmp1_out_tmp1164_channel   | fifo | srl    | 0       |
+|     add_ln22_24_loc_channel_U                         | -   |        | add_ln22_24_loc_channel        | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1165_channel_U                    | -   |        | ref_tmp1_out_tmp1165_channel   | fifo | srl    | 0       |
+|     add_ln22_25_loc_channel_U                         | -   |        | add_ln22_25_loc_channel        | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1166_channel_U                    | -   |        | ref_tmp1_out_tmp1166_channel   | fifo | srl    | 0       |
+|     add_ln22_26_loc_channel_U                         | -   |        | add_ln22_26_loc_channel        | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1167_channel_U                    | -   |        | ref_tmp1_out_tmp1167_channel   | fifo | srl    | 0       |
+|     add_ln22_27_loc_channel_U                         | -   |        | add_ln22_27_loc_channel        | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1168_channel_U                    | -   |        | ref_tmp1_out_tmp1168_channel   | fifo | srl    | 0       |
+|     add_ln22_28_loc_channel_U                         | -   |        | add_ln22_28_loc_channel        | fifo | srl    | 0       |
+|     ref_tmp1_out_tmp1169_channel_U                    | -   |        | ref_tmp1_out_tmp1169_channel   | fifo | srl    | 0       |
+|     add_ln22_29_loc_channel_U                         | -   |        | add_ln22_29_loc_channel        | fifo | srl    | 0       |
+|     ref_tmp1_channel_U                                | -   |        | ref_tmp1_channel               | fifo | srl    | 0       |
+|    + mult_4bit_33                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U34                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + mult_4bit_34                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U39                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry2186_proc                  | 0   |        |                                |      |        |         |
+|      add_ln22_fu_26_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_35                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U44                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21119_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_28_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_36                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U49                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21152_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_37                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U54                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21185_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_28_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_38                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U59                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21218_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_39                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U64                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21251_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_40                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U69                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21284_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_41                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U74                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21317_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_28_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_42                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U79                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21350_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_43                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U84                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21383_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_44                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U89                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21416_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_45                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U94                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21449_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_46                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U99                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21482_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_47                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U104                           | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21515_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_48                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U109                           | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21548_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_49                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U114                           | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21581_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_28_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_50                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U119                           | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21614_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_51                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U124                           | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21647_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_52                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U129                           | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21680_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_53                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U134                           | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21713_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_54                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U139                           | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21746_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_55                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U144                           | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21779_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_56                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U149                           | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21812_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_57                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U154                           | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21845_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_58                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U159                           | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21878_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_59                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U164                           | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21911_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_60                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U169                           | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21944_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_61                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U174                           | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry21977_proc                 | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_62                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U179                           | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry211010_proc                | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit_63                                     | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U184                           | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry211043_proc                | 0   |        |                                |      |        |         |
+|      add_ln22_fu_24_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|    + mult_4bit                                        | 0   |        |                                |      |        |         |
+|      mul_4ns_4ns_8_1_1_U189                           | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|    + dotProd_64_Block_entry211076_proc                | 0   |        |                                |      |        |         |
+|      add_ln22_fu_35_p2                                | -   |        | add_ln22                       | add  | fabric | 0       |
+|  + dotProd                                            | 0   |        |                                |      |        |         |
+|    ref_tmp1_out_tmp_channel_U                         | -   |        | ref_tmp1_out_tmp_channel       | fifo | srl    | 0       |
+|    ref_tmp1_load_cast_loc_channel_U                   | -   |        | ref_tmp1_load_cast_loc_channel | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1204_channel_U                     | -   |        | ref_tmp1_out_tmp1204_channel   | fifo | srl    | 0       |
+|    add_ln22_cast_loc_channel_U                        | -   |        | add_ln22_cast_loc_channel      | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1205_channel_U                     | -   |        | ref_tmp1_out_tmp1205_channel   | fifo | srl    | 0       |
+|    add_ln22_31_loc_channel_U                          | -   |        | add_ln22_31_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1206_channel_U                     | -   |        | ref_tmp1_out_tmp1206_channel   | fifo | srl    | 0       |
+|    add_ln22_32_cast_loc_channel_U                     | -   |        | add_ln22_32_cast_loc_channel   | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1207_channel_U                     | -   |        | ref_tmp1_out_tmp1207_channel   | fifo | srl    | 0       |
+|    add_ln22_33_loc_channel_U                          | -   |        | add_ln22_33_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1208_channel_U                     | -   |        | ref_tmp1_out_tmp1208_channel   | fifo | srl    | 0       |
+|    add_ln22_34_loc_channel_U                          | -   |        | add_ln22_34_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1209_channel_U                     | -   |        | ref_tmp1_out_tmp1209_channel   | fifo | srl    | 0       |
+|    add_ln22_35_loc_channel_U                          | -   |        | add_ln22_35_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1210_channel_U                     | -   |        | ref_tmp1_out_tmp1210_channel   | fifo | srl    | 0       |
+|    add_ln22_36_cast_loc_channel_U                     | -   |        | add_ln22_36_cast_loc_channel   | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1211_channel_U                     | -   |        | ref_tmp1_out_tmp1211_channel   | fifo | srl    | 0       |
+|    add_ln22_37_loc_channel_U                          | -   |        | add_ln22_37_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1212_channel_U                     | -   |        | ref_tmp1_out_tmp1212_channel   | fifo | srl    | 0       |
+|    add_ln22_38_loc_channel_U                          | -   |        | add_ln22_38_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1213_channel_U                     | -   |        | ref_tmp1_out_tmp1213_channel   | fifo | srl    | 0       |
+|    add_ln22_39_loc_channel_U                          | -   |        | add_ln22_39_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1214_channel_U                     | -   |        | ref_tmp1_out_tmp1214_channel   | fifo | srl    | 0       |
+|    add_ln22_40_loc_channel_U                          | -   |        | add_ln22_40_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1215_channel_U                     | -   |        | ref_tmp1_out_tmp1215_channel   | fifo | srl    | 0       |
+|    add_ln22_41_loc_channel_U                          | -   |        | add_ln22_41_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1216_channel_U                     | -   |        | ref_tmp1_out_tmp1216_channel   | fifo | srl    | 0       |
+|    add_ln22_42_loc_channel_U                          | -   |        | add_ln22_42_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1217_channel_U                     | -   |        | ref_tmp1_out_tmp1217_channel   | fifo | srl    | 0       |
+|    add_ln22_43_loc_channel_U                          | -   |        | add_ln22_43_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1218_channel_U                     | -   |        | ref_tmp1_out_tmp1218_channel   | fifo | srl    | 0       |
+|    add_ln22_44_cast_loc_channel_U                     | -   |        | add_ln22_44_cast_loc_channel   | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1219_channel_U                     | -   |        | ref_tmp1_out_tmp1219_channel   | fifo | srl    | 0       |
+|    add_ln22_45_loc_channel_U                          | -   |        | add_ln22_45_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1220_channel_U                     | -   |        | ref_tmp1_out_tmp1220_channel   | fifo | srl    | 0       |
+|    add_ln22_46_loc_channel_U                          | -   |        | add_ln22_46_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1221_channel_U                     | -   |        | ref_tmp1_out_tmp1221_channel   | fifo | srl    | 0       |
+|    add_ln22_47_loc_channel_U                          | -   |        | add_ln22_47_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1222_channel_U                     | -   |        | ref_tmp1_out_tmp1222_channel   | fifo | srl    | 0       |
+|    add_ln22_48_loc_channel_U                          | -   |        | add_ln22_48_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1223_channel_U                     | -   |        | ref_tmp1_out_tmp1223_channel   | fifo | srl    | 0       |
+|    add_ln22_49_loc_channel_U                          | -   |        | add_ln22_49_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1224_channel_U                     | -   |        | ref_tmp1_out_tmp1224_channel   | fifo | srl    | 0       |
+|    add_ln22_50_loc_channel_U                          | -   |        | add_ln22_50_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1225_channel_U                     | -   |        | ref_tmp1_out_tmp1225_channel   | fifo | srl    | 0       |
+|    add_ln22_51_loc_channel_U                          | -   |        | add_ln22_51_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1226_channel_U                     | -   |        | ref_tmp1_out_tmp1226_channel   | fifo | srl    | 0       |
+|    add_ln22_52_loc_channel_U                          | -   |        | add_ln22_52_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1227_channel_U                     | -   |        | ref_tmp1_out_tmp1227_channel   | fifo | srl    | 0       |
+|    add_ln22_53_loc_channel_U                          | -   |        | add_ln22_53_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1228_channel_U                     | -   |        | ref_tmp1_out_tmp1228_channel   | fifo | srl    | 0       |
+|    add_ln22_54_loc_channel_U                          | -   |        | add_ln22_54_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1229_channel_U                     | -   |        | ref_tmp1_out_tmp1229_channel   | fifo | srl    | 0       |
+|    add_ln22_55_loc_channel_U                          | -   |        | add_ln22_55_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1230_channel_U                     | -   |        | ref_tmp1_out_tmp1230_channel   | fifo | srl    | 0       |
+|    add_ln22_56_loc_channel_U                          | -   |        | add_ln22_56_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1231_channel_U                     | -   |        | ref_tmp1_out_tmp1231_channel   | fifo | srl    | 0       |
+|    add_ln22_57_loc_channel_U                          | -   |        | add_ln22_57_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1232_channel_U                     | -   |        | ref_tmp1_out_tmp1232_channel   | fifo | srl    | 0       |
+|    add_ln22_58_loc_channel_U                          | -   |        | add_ln22_58_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_out_tmp1233_channel_U                     | -   |        | ref_tmp1_out_tmp1233_channel   | fifo | srl    | 0       |
+|    add_ln22_59_loc_channel_U                          | -   |        | add_ln22_59_loc_channel        | fifo | srl    | 0       |
+|    ref_tmp1_channel_U                                 | -   |        | ref_tmp1_channel               | fifo | srl    | 0       |
+|   + mult_4bit_1                                       | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U424                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + mult_4bit_2                                       | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U428                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85150_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_26_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_3                                       | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U433                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85183_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_28_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_4                                       | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U438                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85216_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_5                                       | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U443                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85249_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_28_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_6                                       | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U448                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85282_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_7                                       | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U453                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85315_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_8                                       | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U458                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85348_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_9                                       | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U463                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85381_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_28_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_10                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U468                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85414_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_11                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U473                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85447_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_12                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U478                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85480_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_13                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U483                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85513_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_14                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U488                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85546_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_15                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U493                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85579_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_16                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U498                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85612_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_17                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U503                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85645_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_28_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_18                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U508                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85678_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_19                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U513                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85711_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_20                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U518                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85744_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_21                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U523                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85777_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_22                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U528                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85810_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_23                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U533                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85843_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_24                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U538                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85876_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_25                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U543                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85909_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_26                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U548                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85942_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_27                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U553                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry85975_proc                     | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_28                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U558                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry851008_proc                    | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_29                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U563                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry851041_proc                    | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_30                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U568                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry851074_proc                    | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_31                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U573                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry851107_proc                    | 0   |        |                                |      |        |         |
+|     add_ln22_fu_24_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
+|   + mult_4bit_32                                      | 0   |        |                                |      |        |         |
+|     mul_4ns_4ns_8_1_1_U578                            | -   |        | mul_ln5                        | mul  | auto   | 0       |
+|   + dotProd_Block_entry851140_proc                    | 0   |        |                                |      |        |         |
+|     add_ln22_fu_35_p2                                 | -   |        | add_ln22                       | add  | fabric | 0       |
++-------------------------------------------------------+-----+--------+--------------------------------+------+--------+---------+
+
+
+================================================================
+== Bind Storage Report
+================================================================
++--------------------+------+------+--------+----------------+---------+------+---------+
+| Name               | BRAM | URAM | Pragma | Variable       | Storage | Impl | Latency |
++--------------------+------+------+--------+----------------+---------+------+---------+
+| + attention        | 1    | 0    |        |                |         |      |         |
+|   tokens_U         | -    | -    |        | tokens         | ram_1p  | auto | 1       |
+|   tokens_1_U       | -    | -    |        | tokens_1       | ram_1p  | auto | 1       |
+|   tokens_2_U       | -    | -    |        | tokens_2       | ram_1p  | auto | 1       |
+|   tokens_3_U       | -    | -    |        | tokens_3       | ram_1p  | auto | 1       |
+|   tokens_4_U       | -    | -    |        | tokens_4       | ram_1p  | auto | 1       |
+|   tokens_5_U       | -    | -    |        | tokens_5       | ram_1p  | auto | 1       |
+|   tokens_6_U       | -    | -    |        | tokens_6       | ram_1p  | auto | 1       |
+|   tokens_7_U       | -    | -    |        | tokens_7       | ram_1p  | auto | 1       |
+|   tokens_8_U       | -    | -    |        | tokens_8       | ram_1p  | auto | 1       |
+|   tokens_9_U       | -    | -    |        | tokens_9       | ram_1p  | auto | 1       |
+|   tokens_10_U      | -    | -    |        | tokens_10      | ram_1p  | auto | 1       |
+|   tokens_11_U      | -    | -    |        | tokens_11      | ram_1p  | auto | 1       |
+|   tokens_12_U      | -    | -    |        | tokens_12      | ram_1p  | auto | 1       |
+|   tokens_13_U      | -    | -    |        | tokens_13      | ram_1p  | auto | 1       |
+|   tokens_14_U      | -    | -    |        | tokens_14      | ram_1p  | auto | 1       |
+|   tokens_15_U      | -    | -    |        | tokens_15      | ram_1p  | auto | 1       |
+|   tokens_16_U      | -    | -    |        | tokens_16      | ram_1p  | auto | 1       |
+|   tokens_17_U      | -    | -    |        | tokens_17      | ram_1p  | auto | 1       |
+|   tokens_18_U      | -    | -    |        | tokens_18      | ram_1p  | auto | 1       |
+|   tokens_19_U      | -    | -    |        | tokens_19      | ram_1p  | auto | 1       |
+|   tokens_20_U      | -    | -    |        | tokens_20      | ram_1p  | auto | 1       |
+|   tokens_21_U      | -    | -    |        | tokens_21      | ram_1p  | auto | 1       |
+|   tokens_22_U      | -    | -    |        | tokens_22      | ram_1p  | auto | 1       |
+|   tokens_23_U      | -    | -    |        | tokens_23      | ram_1p  | auto | 1       |
+|   tokens_24_U      | -    | -    |        | tokens_24      | ram_1p  | auto | 1       |
+|   tokens_25_U      | -    | -    |        | tokens_25      | ram_1p  | auto | 1       |
+|   tokens_26_U      | -    | -    |        | tokens_26      | ram_1p  | auto | 1       |
+|   tokens_27_U      | -    | -    |        | tokens_27      | ram_1p  | auto | 1       |
+|   tokens_28_U      | -    | -    |        | tokens_28      | ram_1p  | auto | 1       |
+|   tokens_29_U      | -    | -    |        | tokens_29      | ram_1p  | auto | 1       |
+|   tokens_30_U      | -    | -    |        | tokens_30      | ram_1p  | auto | 1       |
+|   tokens_31_U      | -    | -    |        | tokens_31      | ram_1p  | auto | 1       |
+|   single_qk_k_U    | -    | -    |        | single_qk_k    | ram_1p  | auto | 1       |
+|   single_qk_k_32_U | -    | -    |        | single_qk_k_32 | ram_1p  | auto | 1       |
+|   single_qk_k_33_U | -    | -    |        | single_qk_k_33 | ram_1p  | auto | 1       |
+|   single_qk_k_34_U | -    | -    |        | single_qk_k_34 | ram_1p  | auto | 1       |
+|   single_qk_k_35_U | -    | -    |        | single_qk_k_35 | ram_1p  | auto | 1       |
+|   single_qk_k_36_U | -    | -    |        | single_qk_k_36 | ram_1p  | auto | 1       |
+|   single_qk_k_37_U | -    | -    |        | single_qk_k_37 | ram_1p  | auto | 1       |
+|   single_qk_k_38_U | -    | -    |        | single_qk_k_38 | ram_1p  | auto | 1       |
+|   single_qk_k_39_U | -    | -    |        | single_qk_k_39 | ram_1p  | auto | 1       |
+|   single_qk_k_40_U | -    | -    |        | single_qk_k_40 | ram_1p  | auto | 1       |
+|   single_qk_k_41_U | -    | -    |        | single_qk_k_41 | ram_1p  | auto | 1       |
+|   single_qk_k_42_U | -    | -    |        | single_qk_k_42 | ram_1p  | auto | 1       |
+|   single_qk_k_43_U | -    | -    |        | single_qk_k_43 | ram_1p  | auto | 1       |
+|   single_qk_k_44_U | -    | -    |        | single_qk_k_44 | ram_1p  | auto | 1       |
+|   single_qk_k_45_U | -    | -    |        | single_qk_k_45 | ram_1p  | auto | 1       |
+|   single_qk_k_46_U | -    | -    |        | single_qk_k_46 | ram_1p  | auto | 1       |
+|   single_qk_k_47_U | -    | -    |        | single_qk_k_47 | ram_1p  | auto | 1       |
+|   single_qk_k_48_U | -    | -    |        | single_qk_k_48 | ram_1p  | auto | 1       |
+|   single_qk_k_49_U | -    | -    |        | single_qk_k_49 | ram_1p  | auto | 1       |
+|   single_qk_k_50_U | -    | -    |        | single_qk_k_50 | ram_1p  | auto | 1       |
+|   single_qk_k_51_U | -    | -    |        | single_qk_k_51 | ram_1p  | auto | 1       |
+|   single_qk_k_52_U | -    | -    |        | single_qk_k_52 | ram_1p  | auto | 1       |
+|   single_qk_k_53_U | -    | -    |        | single_qk_k_53 | ram_1p  | auto | 1       |
+|   single_qk_k_54_U | -    | -    |        | single_qk_k_54 | ram_1p  | auto | 1       |
+|   single_qk_k_55_U | -    | -    |        | single_qk_k_55 | ram_1p  | auto | 1       |
+|   single_qk_k_56_U | -    | -    |        | single_qk_k_56 | ram_1p  | auto | 1       |
+|   single_qk_k_57_U | -    | -    |        | single_qk_k_57 | ram_1p  | auto | 1       |
+|   single_qk_k_58_U | -    | -    |        | single_qk_k_58 | ram_1p  | auto | 1       |
+|   single_qk_k_59_U | -    | -    |        | single_qk_k_59 | ram_1p  | auto | 1       |
+|   single_qk_k_60_U | -    | -    |        | single_qk_k_60 | ram_1p  | auto | 1       |
+|   single_qk_k_61_U | -    | -    |        | single_qk_k_61 | ram_1p  | auto | 1       |
+|   single_qk_k_62_U | -    | -    |        | single_qk_k_62 | ram_1p  | auto | 1       |
+|  + project         | 0    | 0    |        |                |         |      |         |
+|    temp_results_U  | -    | -    |        | temp_results   | ram_s2p | auto | 1       |
++--------------------+------+------+--------+----------------+---------+------+---------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Ignored Pragmas
++--------+---------+----------------------------------------------------------------------+-----------------------------------+
+| Type   | Options | Location                                                             | Messages                          |
++--------+---------+----------------------------------------------------------------------+-----------------------------------+
+| unroll | off =   | ../../../../Desktop/CSE237C/project/attention.cpp:22 in print_matrix | unexpected pragma parameter 'off' |
+| unroll | off =   | ../../../../Desktop/CSE237C/project/attention.cpp:59 in attention    | unexpected pragma parameter 'off' |
+| unroll | off=    | ../../../../Desktop/CSE237C/project/QKV.cpp:17 in singleqk           | unexpected pragma parameter 'off' |
+| unroll | off=    | ../../../../Desktop/CSE237C/project/QKVProj.cpp:15 in project        | unexpected pragma parameter 'off' |
+| unroll | off=    | ../../../../Desktop/CSE237C/project/QKVProj.cpp:54 in project_all    | unexpected pragma parameter 'off' |
++--------+---------+----------------------------------------------------------------------+-----------------------------------+
+
+* Pragmas with Warnings
++----------+---------+---------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Type     | Options | Location                                                      | Messages                                                                                                                                                                           |
++----------+---------+---------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| dataflow |         | ../../../../Desktop/CSE237C/project/dotProd.cpp:15 in dotprod | Since the only kind of statements allowed in a canonical dataflow region are variable declarations and function calls, the compiler may not be able to correctly handle the region |
++----------+---------+---------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+* Valid Pragma Syntax
++-----------------+---------------------------------+-----------------------------------------------------------------------------+
+| Type            | Options                         | Location                                                                    |
++-----------------+---------------------------------+-----------------------------------------------------------------------------+
+| stream          | variable=K depth=32*32          | ../../../../Desktop/CSE237C/project/attention.cpp:44 in attention, K        |
+| unroll          |                                 | ../../../../Desktop/CSE237C/project/attention.cpp:65 in attention           |
+| stream          | variable=Q_stream depth=32      | ../../../../Desktop/CSE237C/project/attention.cpp:69 in attention, Q_stream |
+| unroll          |                                 | ../../../../Desktop/CSE237C/project/attention.cpp:83 in attention           |
+| unroll          |                                 | ../../../../Desktop/CSE237C/project/dotProd.cpp:18 in dotprod               |
+| array_partition | variable = row1 type = complete | ../../../../Desktop/CSE237C/project/dotProd.cpp:19 in dotprod               |
+| array_partition | variable = row2 type = complete | ../../../../Desktop/CSE237C/project/dotProd.cpp:20 in dotprod               |
+| unroll          |                                 | ../../../../Desktop/CSE237C/project/QKVProj.cpp:42 in project               |
++-----------------+---------------------------------+-----------------------------------------------------------------------------+
+
+
