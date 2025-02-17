@@ -1,6 +1,6 @@
 ﻿# CSE237C-Project
 
-This project processes an input of size N x DMODEL and outputs a result of the same size, N x DMODEL.
+This project is an implementaion of the attention operation in language models on an FPGA. It processes an input of size N x DMODEL and outputs a result of the same size, N x DMODEL.
 
 The code is divided into different branches.
 
