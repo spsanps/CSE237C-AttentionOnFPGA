@@ -1,4 +1,4 @@
-﻿# CSE237C-Project
+﻿# CSE237C-AttentionOnFPGA
 
 This project is an implementaion of the attention operation in language models on an FPGA. It processes an input of size N x DMODEL and outputs a result of the same size, N x DMODEL.
 
